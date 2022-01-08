@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
+*{
+    font-family: 'Poppins';
+    /* background-color : #131D25; */
+    /* color: #fff; */
+}
+
+body{
+    background-color : #131D25;
+    color: #fff;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+/* Default */
+.flex{
+    display: flex;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.center{
+    justify-content: center;
+}
+.sb{
+    justify-content: space-between;
+}
+.sa{
+    justify-content: space-around;
+}
+.ac{
+    place-items: center;
+    /* place-content: center; */
+}
+.p-btn{
+    background-color: #00FFE0;
+    padding: 10px 30px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    border:none;
+    outline:none;
+}
+.p-btn:hover{
+    background-color:#30ffe7;
+    box-shadow: 0 0 5px #30ffe7;
+}
+/* End of default */
+
+/* Heading Design */
+.header{
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    padding: 5px;
+}
+.logo{
+    width:50px;
+    height:50px;
+    cursor: pointer;
+}
+.list-container{
+    
+}
+/* input:hover{
+    background: black !important;
+} */
+.list {
+    list-style: none;
+    /* display: inline-block; */
+    margin-right: 20px ;
+    cursor: pointer;
+    color: #fff !important;
+}
+.active-list{
+    border-bottom: 3px solid #00FFE0 ;
+}
+.active {
+    text-align: justify;
+}
+.header-block{
+    width: 90%;
+    margin: auto;
+    background: #1D242F;
+    margin-top: 20px;
+    border-radius: 5px;
+    /* padding: 0px 20px; */
+}
+
+/* https://i.ibb.co/jwBHMRv/logo-free-file.png */
+/* https://svgshare.com/i/dAR.svg */
+/* https://svgshare.com/i/d9M.svg */
+/* https://svgshare.com/i/dAS.svg */
+.li{
+    list-style-type: none;
+    padding: 15px 20px;
+    color: black;
+    /* margin:5px; */
+    /* border-radius:5px; */
+    cursor:pointer;
+    font-family: 'Georgia'
+}
+.li:hover{
+    background-color: #2a2020;
+    color: white;
+}
+
+/* End Heading  */
+
+/* Landing Page */
+
+.landing-section{
+    margin: auto;
+    margin-top:40px;
+    width: 90%;
+    
+}
+.webtext{
+    margin-top: 30px;
+}
+
+.landing-illustrator{
+    margin-top:20px;
+}
+.home-modal-btn{
+    margin:  5px 10px;
+    background: #000;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Feature Design */
+
+.h2 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 150%;
+    font-family: 'Roboto';
+}
+.feature-boxes{
+    width:90%;
+    margin:auto;
+}
+.feature-box {
+    background-color: #090515;
+    width: 400px;
+    height: 360px;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.h3 {
+    font-family: 'Georgia';
+    text-align: center;
+}
+.feature-image-container{
+    
+}
+.note-feature {
+    align-items: center;
+    margin:auto;
+}
+
+.feature-details {
+    text-align: justify;
+    padding: 20px;
+}
+/* End feature design */
+.footer{
+    background-color: #110C1F;
+    margin-top: 20px;
+    padding:10px;
+}
+.footer-icon{
+    font-size: 20px;
+    margin: 0px 10px;
+}
+/* Eend Laanding Page */
+.chtoku{
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 2px;
+}
+
+
+/* Login and Signup Page */
+.login-page{
+    display: flex;
+    align-items: center;
+    place-items: center;
+    place-content: center;
+    min-height: 100vh;
+}
+
+.login-container{
+    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: #3A3941; */
+    width:90%;
+    max-width:1000px;
+    margin: auto;
+    border-radius: 5px;
+    min-height: 600px;
+    max-height: 800px;
+    position: relative;
+}
+.login-left-container{
+    /* position: relative; */
+}
+.login-ill-container{
+    
+    position: absolute;
+    /* height:100%; */
+    /* margin-top: 0;
+    margin-bottom :0;
+    margin-left: 0;
+    margin-right:0; */
+    bottom: -6px;
+    left: -7%;
+    /* margin-bottom: 0px; */
+}
+
+.login-logo{
+    width: 70px;
+    height: 70px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.h22 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 150%;
+    font-family: 'Roboto';
+}
+.login-ill {
+    /* position: absolute; */
+    /* bottom:0px; */
+    /* width: 95%; */
+    /* max-width:600px; */
+    width: 80%;
+    
+}
+.login-form-container{
+    background: rgba(7, 2, 2, 0.4);
+    position: relative;
+    top: 0px;
+    bottom:0px;
+    height: 100%;
+    margin-top: 0px;
+    background-color: #131d2581;
+    /* width: 100%; */
+    /* padding: 20px; */
+
+}
+.input-icon{
+    margin:5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* background: white; */
+    color: black;
+    /* border-right: 1px solid black; */
+}
+.input-icon:hover{
+    background: none;
+}
+
+.underlined-link {
+    border-bottom: 1px solid #000;
+    color:#000;
+    font-family: 'Georgia';
+    font-size: 100%;
+}
+/* End Login Signup */
+
+
+
+/* Code */
+
+
+.classcard{
+    width: 400px;
+    /* height: 400px; */
+    background-color: #1D242F;
+    /* margin: 20px; */
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+
+/*  */
+
+
+/* Teacher Dashboard */
+
+.classes-container{
+    width: 90%;
+    margin: auto;
+    /* margin-top: 5px; */
+}
+
+.participants-card {
+    display: flex;
+    place-items: center;
+    background-color: #000;
+    padding: 2px 8px;
+    margin: 7px 8px;
+    border-radius: 8px;
+    /* margin-bottom: 2px; */
+}
+
+.participants-card p {
+    color: #fff;
+}
+
+.teacher-update-class-page {
+    background-color: #131D25;
+    min-height:100vh;
+}
+
+.class-detail-container {
+    color:#fff;
+    padding: 0px 15px;
+    /* background-color: red; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notification-card {
+    background-color: #1D242F;
+    /* width: 100%; */
+    color: #fff;
+    margin:10px;
+    border-radius: 8px;
+    padding: 10px 20px;
+    position:relative;
+}
+.date-span{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.roboto{
+    font-family: Roboto;
+}
+.semi-bold{
+    font-weight: 600;
+    
+}
+.bold{
+    font-weight: 700;
+}
+
+/*  */
+
+
+
+
+
+
+.empty-box{
+    width: 70%;
+    margin: auto;
+    background: #1D242F;
+    margin-top: 50px;
+    border: 1px solid white;
+    padding: 20px 0px;
+    border-radius: 5px;
+}
+
+.signup-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* background-color: #3A3941; */
+    width:90%;
+    max-width:1000px;
+    margin: auto;
+    border-radius: 5px;
+    min-height: 600px;
+    max-height: 800px;
+    position: relative;
+}
+
+.signup-ill {
+   max-width: 50%;
+   margin-left: 100px;
+
+}
+
+.signup-logo {
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+.quote {
+    margin-top: 20px;
+}
+
+.class-owner-join {
+    font-style: italic;
+    margin-top: -1px;
+    font-family: Georgia;
+    font-size: 80%;
+}
+
+.class-subtitle-join {
+    font-family: Times;
+    font-size: 120%;
+}
