@@ -19,7 +19,7 @@ function Homepage() {
             <div className='landing-section'>
                 <Grid container spacing={2} >
                     <Grid item md={6} >
-                        <h1 className='webtext'> Welcome To Your Virtual Classroom! </h1>
+                        <h1 className='webtext'> Welcome To Our Virtual Classroom! </h1>
                         <p className='active'> This virtual classroom has integrated benefits of a physical classroom with the convenience of a ‘no-physical-bar’ 
                             virtual learning environment, minus the commuting hazards and expenses. This virtual classroom shall make it possible for the students to access all learning 
                             materials from home, interact with the teachers through video conferencing calls to clarify their doubts and much more.
