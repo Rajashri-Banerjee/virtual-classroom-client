@@ -6,9 +6,9 @@ function ParticipantsList({users,open}) {
         <div style={{marginTop:'10px'}} >
             {(users && users.length) > 0 ?
                 users.map((user,index)=>{
-                    return <User user = {user} open={open} />
+                    return <User user = {user} open={open} key={index} />
                 }):
-                <div style={{display:'flex',justifyContent:'center'}} >
+                <div style={{display:'flex',justifyContent:'center'}}  >
                     {!open && <PeopleAltIcon sx={{color:'white'}} />}
                     {open && <p>No Participants To Show</p>}
                 </div>

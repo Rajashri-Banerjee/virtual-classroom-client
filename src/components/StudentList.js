@@ -14,6 +14,8 @@ import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import DownloadIcon from '@mui/icons-material/Download';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ChatBox from './ChatBox';
+import AssignmentList from './AssignmentList';
 
 function StudentList(props) {
     const [open,setOpen] = useState(false)
@@ -51,14 +53,9 @@ function StudentList(props) {
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
                         <p className='semi-bold'>Assignments</p>
                     </div>
-                    <div className='empty-box'>
-                        {/* <Center > */}
-                            <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
-                        {/* </Center> */}
-                    </div>
+                    <AssignmentList assignments={props.assignments} user={props.user} />
+                    {console.log(props)}
                 </div> 
-
             }
             {props.active ==='notes' &&
                 <div>
@@ -123,18 +120,11 @@ function StudentList(props) {
             {props.active ==='chat' &&
                 <div>
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
-                        <p className='semi-bold'>Questionnaires</p>
+                        <p className='semi-bold'>Chat</p>
                     </div>
-                    <div className='empty-box'>
-                        {/* <Center > */}
-                            <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
-                        {/* </Center> */}
-                    </div>
+                    <ChatBox chat={props.chat} user={props.user} room={props.room} />
                 </div> 
-
             }
-
         </Box>
     )
 }

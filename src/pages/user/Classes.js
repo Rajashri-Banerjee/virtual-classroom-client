@@ -55,7 +55,8 @@ function Classes() {
                     <Center >
                          <p  >You haven't joined any classes yet.</p>
                     </Center>
-                </div> }
+                </div>
+            }
                 
             <Flex direction='row' flexWrap={'wrap'} justify={'center'}>
                 {

@@ -28,6 +28,7 @@ import Drawer from './Drawer'
 import ParticipantsList from './ParticipantsList'
 function StudentClassDetails(props) {
 
+    console.log(props.auth.user)
     const location = useLocation()
     const navigate= useNavigate()
     const params = useParams()
@@ -54,6 +55,8 @@ function StudentClassDetails(props) {
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
+    const [chat,setChat] = useState({})
+
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
     }
@@ -72,6 +75,7 @@ function StudentClassDetails(props) {
             url:`http://localhost:3001/user/class?id=${id}`,
             method:'GET'
         })
+         console.log(response.data)
         setLoading(false)
         if(response.data && response.data.error){
             toast.show({
@@ -81,7 +85,7 @@ function StudentClassDetails(props) {
             })
             return
         }
-        console.log(response.data)
+       
         if(response.data.room){
             setRoom(response.data.room)
             setNotes(response.data.room.notes)
@@ -91,6 +95,9 @@ function StudentClassDetails(props) {
             setSubtitle(response.data.room.subtitle)
             setUsers(response.data.users)
             setTeacher(response.data.teacher)
+            if(response.data.chat){
+                setChat(response.data.chat)
+            }
         }
     }
     useEffect(()=>{
@@ -99,12 +106,12 @@ function StudentClassDetails(props) {
     return (
         <Box style={{backgroundColor:'#131D25'}} minHeight={'100vh'} >
             {props.auth.user && 
-                    <Header 
-                        user={props.auth.user} 
-                        dispatch={props.dispatch} 
-                        location={location}
-                    />
-                }
+                <Header 
+                    user={props.auth.user} 
+                    dispatch={props.dispatch} 
+                    location={location}
+                />
+            }
             <Divider/>
             {room && 
                     <Box>
@@ -138,7 +145,7 @@ function StudentClassDetails(props) {
                         </div>
                     </Box>
                 }
-                <Divider />
+                <Divider/>
                 <div>
                     {room && <Drawer 
                         toast={toast} 
@@ -148,10 +155,11 @@ function StudentClassDetails(props) {
                         assignments={assignments}
                         notes={notes}
                         teachers={room.owner}
+                        chat={chat}
+                        user={props.auth.user}
+                        teacher={props.auth.teacher}
                     />}
                 </div>
-        
-
         </Box>
     )
 }

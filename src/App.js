@@ -15,6 +15,7 @@ import Classes from './pages/user/Classes'
 import { connect } from 'react-redux'
 import UserRouter from './pages/user/UserRouter'
 import TeacherRouter from './pages/teacher/TeacherRouter'
+import VideoCall from './pages/user/VideoCall'
 
 function App(props) {
 
@@ -32,6 +33,7 @@ function App(props) {
                 {/* <Route path = '/teacher/createclass' element = {<CreateClassForm/>} />
                 <Route path = '/teacher/class' element = {<UpdateClass/>}   /> */}
                 <Route path='/student/*' element={<UserRouter />} />
+                <Route path='/videocall' element={<VideoCall/>} />
             </Routes>
         </BrowserRouter>
     )

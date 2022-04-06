@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "agora-rtc-react": "github:AgoraIO-Community/agora-rtc-react#v1.0.0",
     "axios": "^0.24.0",
     "form-data": "^4.0.0",
     "native-base": "^3.2.2",

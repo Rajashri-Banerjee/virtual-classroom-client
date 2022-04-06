@@ -349,6 +349,14 @@ a{
     font-style: italic;
 }
 
+.date-span2{
+    position: absolute;
+    left: 10px;
+    bottom: 5px;
+    font-size: 12px;
+    font-style: italic;
+}
+
 .roboto{
     font-family: Roboto;
 }
@@ -415,3 +423,61 @@ a{
     font-family: Times;
     font-size: 120%;
 }
+
+/**  */
+.message-box{
+    padding: 0px 10px;
+    /* border: 2px solid white; */
+    background : rgba(255, 255, 255, 0.075);
+    margin: 15px 20px ;
+    border-radius: 10px;
+    position: relative;
+}
+
+.message-username{
+    position: absolute;
+    top: -10px;
+    left:20px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.521);
+    font-family: Poppins;
+}
+.message-body{
+    color: rgb(255, 255, 255);
+    margin-left: 10px;
+    font-family : Roboto;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    
+}
+.message-date{
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.445);
+    font-size: 12px;
+}
+
+.message-text{
+    flex: 1;
+    padding : 10px 0px;
+    outline : none;
+    background: transparent;
+    border : 1px solid white;
+    color : white;
+    padding-left: 15px;
+    border-radius : 5px;
+}
+
+.message-send{
+    width : 70px;
+    outline : none;
+    padding : 10px 0px;
+}
+
+.input-container{
+    display : flex;
+    margin : 10px 20px;
+    align-items: center;
+}
+

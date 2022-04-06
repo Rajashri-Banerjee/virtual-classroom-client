@@ -105,7 +105,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer({children,participantsList,users,toast,room,notifications,setNotifications,assignments,setAssignments,notes,setNotes,setNotificationModal,setAssignmentsModal,setNotesModal,updateHandler}) {
+export default function MiniDrawer({children,participantsList,users,toast,room,notifications,setNotifications,assignments,setAssignments,notes,setNotes,setNotificationModal,setAssignmentsModal,setNotesModal,updateHandler,user}) {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -173,7 +173,7 @@ export default function MiniDrawer({children,participantsList,users,toast,room,n
                     <ListItemIcon>
                         <ForumIcon sx={{color:'white'}}/>
                     </ListItemIcon>
-                    <ListItemText primary='Questionnaires' />
+                    <ListItemText primary='Chat' />
                 </ListItem>
             </List>
         </Drawer>
@@ -194,6 +194,9 @@ export default function MiniDrawer({children,participantsList,users,toast,room,n
             setNotesModal={setNotesModal}
             setAssignmentsModal={setAssignmentsModal}
             updateHandler={updateHandler}
+            user={user}
+            room={room}
+            admin
         />
       </div>
       <Drawer 

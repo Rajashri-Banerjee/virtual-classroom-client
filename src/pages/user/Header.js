@@ -7,7 +7,7 @@ import { ImExit } from 'react-icons/im';
 import { Typography, Avatar } from '@mui/material'
 function Header({user,setCreateModal,createModal,dispatch,location}) {
     const navigate = useNavigate()
-    const navigateHandler = () =>{
+    const logoutHandler = () =>{
         dispatch({
             type : 'ADD_USER',
             user : null,
@@ -34,7 +34,7 @@ function Header({user,setCreateModal,createModal,dispatch,location}) {
                         >
                             <Link to='/student/dashboard'>Dashboard</Link>
                         </li>
-                        <li className='list'>Logout</li>
+                        <li className='list' onClick={logoutHandler}>Logout</li>
                     </ul>
                     {/* <Box pr='10px' >
                          <p>{user.fullname}</p>  

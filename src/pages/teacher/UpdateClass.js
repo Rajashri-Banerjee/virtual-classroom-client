@@ -190,6 +190,7 @@ function UpdateClass(props) {
                     setAssignments={setAssignments}
                     setNotes={setNotes}
                     updateHandler={updateHandler}
+                    user={props.auth.user}
                 />
             </div>
             <Box mt='10px' p='5' width='600px' >

@@ -14,10 +14,10 @@ function TeacherLogin(props) {
     const location = useLocation()
     const search = queryString.parse(location.search)
     const toast = useToast()
-    const [username,setUsername] = useState('rsb')
+    const [username,setUsername] = useState('')
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState('')
-    const [password,setPassword] = useState('rsb')
+    const [password,setPassword] = useState('')
     const loginHandler = async() => {
         setLoading(true)
         const response = await axios({

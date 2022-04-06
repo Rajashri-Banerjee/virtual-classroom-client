@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useRef} from 'react'
 import { Box, Flex,Center,Button,Input,useToast,Modal } from 'native-base'
 import { connect } from 'react-redux'
 import { Typography, Avatar } from '@mui/material'
@@ -16,7 +16,8 @@ function TeacherProfile(props) {
     const [contact,setContact] = useState((props.auth.user && props.auth.user.contact)|| '')
     const [image,setImage] = useState('')
     const [imageUrl,setImageUrl] = useState('')
-    
+    const fileRef = useRef()
+
     const updateHandler = async() =>{
         setLoading(true)
         try {
@@ -96,20 +97,21 @@ function TeacherProfile(props) {
                 token : props.auth.token
             })
         }
+        setImage(null)
         console.log(response.data)
         setLoading(false)
     }
     const onFileChange = event => {
         setImage(event.target.files[0])
         const formData = new FormData();
-        setImageUrl(URL.createObjectURL(event.target.files[0]))
     };
+
     return (
-        <Box _light={{bg:'gray.200'}} minH={'100vh'}  >
+        <Box _light={{bg:'#131D25'}} minH={'100vh'}  >
             {props.auth && props.auth.user && 
                 <Box margin='auto' w='95%' maxWidth={'500px'} mt='5' >
                     <Box
-                        _light={{bg:'white'}}
+                        _light={{bg:'#1D242F'}}
                         shadow='1'
                         width='100%'
                         borderRadius='3'
@@ -121,10 +123,16 @@ function TeacherProfile(props) {
                                 <Avatar 
                                     sx={{ width: 100, height: 100,maring:'auto',marginTop:'10px',cursor:'pointer' }}
                                     src={props.auth.user.profile.avatar}
+                                    onClick={()=>{
+                                        fileRef.current.click()
+                                    }}
                                 >
                                 </Avatar>:
                                 <Avatar 
                                     sx={{ width: 100, height: 100,maring:'auto',marginTop:'10px',cursor:'pointer' }}
+                                    onClick={()=>{
+                                        fileRef.current.click()
+                                    }}
                                 >
                                     {props.auth.user.username[0].toUpperCase()}
                                 </Avatar>
@@ -144,16 +152,18 @@ function TeacherProfile(props) {
                         >
                             @{props.auth.user.username}
                         </Typography>
-                        <input type='file' onChange={onFileChange} />
-                        <button onClick={profilePicUpdateHandler} >
-                            updae
-                        </button>
-                        
-                        <img src={imageUrl} alt="" width='100px' height={'100px'} />
+                        <input ref={fileRef} type='file' onChange={onFileChange} style={{display:'none'}}/>
+                        {image && <Button
+                        margin='auto'
+                        mt='4'
+                        width='70px'
+                        onPress={profilePicUpdateHandler} >
+                            Update
+                        </Button>}
                     </Box>
                     
                     <Box
-                        _light={{bg:'white'}}
+                        _light={{bg:'#1D242F'}}
                         shadow='1'
                         width='100%'
                         borderRadius='3'
@@ -210,6 +220,12 @@ function TeacherProfile(props) {
                         <Center mt='5'>
                             <Button
                                 onPress={()=>setOpen(true)}
+                                isLoading = {loading}
+                                _text={{color: 'white'}}
+                                bg={'black'}
+                                _hover={{bg:'blueGray.900'}}
+                                isLoadingText = 'Logging in...'
+                                mt = '4'
                             >
                                 Edit
                             </Button>

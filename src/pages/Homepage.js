@@ -146,12 +146,6 @@ function Homepage() {
         
             </div>
 
-
-
-
-            
-
-        
             <Box>
                 <Modal isOpen={open} onClose={() => setOpen(false)}>
                     <Modal.Content maxWidth="400px"  marginTop='200' marginBottom='auto'>

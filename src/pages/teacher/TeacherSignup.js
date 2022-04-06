@@ -22,6 +22,35 @@ function TeacherSignup(props) {
     const [loading,setLoading] = useState(false)
     
     const signupHandler = async() => {
+        if(username.length < 4){
+            toast.show({
+                title : 'Validation Error!',
+                description : "Username length must be at least 4 chars.",
+                status : 'error'
+            })
+            return
+        }
+        function validateEmail(email) {
+            var re = /\S+@\S+\.\S+/;
+            return re.test(email);
+        }
+        if(!validateEmail(email)){
+            toast.show({
+                title : 'Validation Error!',
+                description : "Invalid Email",
+                status : 'error'
+            })
+            return
+        }
+        if(password.length< 8){
+            toast.show({
+                title : 'Validation Error!',
+                description : "Password length must be at least 8 chars.",
+                status : 'error'
+            })
+            return
+        }
+
         setLoading(true)
         const response = await axios({
             url : 'http://localhost:3001/teacher/signup',
@@ -124,6 +153,7 @@ function TeacherSignup(props) {
                                         placeholder = 'Password'
                                         bg = 'white'
                                         value = {password}
+                                        type= 'password'
                                         onChangeText = {setPassword}
                                         InputLeftElement={
                                             <KeyIcon className='input-icon' />

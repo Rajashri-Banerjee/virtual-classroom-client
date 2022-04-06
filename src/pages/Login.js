@@ -15,9 +15,9 @@ function Login(props) {
     const search = queryString.parse(location.search);
     console.log(location)
     const toast = useToast()
-    const [username,setUsername] = useState('rajashri_banerjee')
+    const [username,setUsername] = useState('')
     const [loading,setLoading] = useState(false)
-    const [password,setPassword] = useState('rajashri')
+    const [password,setPassword] = useState('')
     const [error,setError] = useState('')
     const loginHandler = async() => {
         setLoading(true)
