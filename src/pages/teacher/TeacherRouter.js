@@ -7,7 +7,7 @@ import TeacherDashboard from './TeacherDashboard'
 import CreateClassForm from './CreateClassForm'
 import UpdateClass from './UpdateClass'
 import TeacherProfile from './TeacherProfile'
-
+import LiveClass from './LiveClass'
 function TeacherRouter(props) {
     console.log(props)
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ function TeacherRouter(props) {
     useEffect(()=>{
         console.log(props.auth)
         if(!props.auth.token && !(props.auth.authenticated_as =='teacher')){
-            navigate(`/teachers/login?next=${location.pathname}`)
+            navigate(`/teachers/login?next=${location.pathname+location.search}`)
         }
     },[props.auth])
     return (
@@ -24,6 +24,7 @@ function TeacherRouter(props) {
             <Route path='/create-classes' element={<CreateClassForm />} />
             <Route path='/update-class/:id' element={<UpdateClass />} />
             <Route path='/profile' element={<TeacherProfile />} />
+            <Route path='/live-class' element={<LiveClass />} />
         </Routes>
     )
 }

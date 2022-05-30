@@ -8,6 +8,7 @@ import { Typography, Avatar } from '@mui/material'
 function Header({user,setCreateModal,createModal,dispatch, location}) {
     const navigate = useNavigate()
     const navigateHandler = () =>{
+        localStorage.removeItem('teacher')
         dispatch({
             type : 'ADD_USER',
             user : null,
@@ -39,8 +40,8 @@ function Header({user,setCreateModal,createModal,dispatch, location}) {
                 <Flex direction='row' placeItems='center' alignItems='center'  >
                     <ul className='flex' >
                         <li className={`${location.pathname==='/' ? 'list active-list': 'list'}`}><Link to='/'>Home</Link></li>
-                        <li className={`${location.pathname==='/teacher/dashboard' ? 'list active-list': 'list'}`}>Dashboard</li>
-                        <li className='list'>Logout</li>
+                        <li className={`${location.pathname==='/teacher/dashboard' ? 'list active-list': 'list'}`}><Link to='/teacher/dashboard'>Dashboard</Link></li>
+                        <li className='list' onClick={navigateHandler}>Logout</li>
                     </ul>
                     {/* <Box pr='10px' >
                          <p>{user.fullname}</p>  

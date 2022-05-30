@@ -1,25 +1,27 @@
-import React,{useState} from 'react'
-import {Box,Flex,Text,Button} from'native-base'
-import {TiArrowSortedDown,TiArrowSortedUp} from 'react-icons/ti';
-import {MdDelete} from 'react-icons/md';
+import ChatBox from './ChatBox';
 import Ripples from 'react-ripples'
+import React,{useState} from 'react'
+import {MdDelete} from 'react-icons/md';
+import {Box, Flex, Text,Button} from'native-base'
 import Accordion from '@mui/material/Accordion';
-import Typography from '@mui/material/Typography';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import {BsFileEarmarkPdf} from  'react-icons/bs';
+import Typography from '@mui/material/Typography';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/Download';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import {TiArrowSortedDown,TiArrowSortedUp} from 'react-icons/ti';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import DownloadIcon from '@mui/icons-material/Download';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ChatBox from './ChatBox';
+
 import AssignmentList from './AssignmentList';
+import { Link } from 'react-router-dom'
 
 function StudentList(props) {
     const [open,setOpen] = useState(false)
-
+    // console.log(props)
     return (
         <Box width='100%'>
             {props.active ==='notifications' &&
@@ -53,6 +55,12 @@ function StudentList(props) {
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
                         <p className='semi-bold'>Assignments</p>
                     </div>
+                    {props.assignments.length === 0 &&
+                        <div className='empty-box'>
+                            <p style={{textAlign:'center',color:'white'}} 
+                            >No assignments have been shared to this class yet.</p>
+                        </div>
+                    }
                     <AssignmentList assignments={props.assignments} user={props.user} />
                     {console.log(props)}
                 </div> 
@@ -60,8 +68,7 @@ function StudentList(props) {
             {props.active ==='notes' &&
                 <div>
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
-                        <p className='semi-bold'>Notes</p>
-                        
+                        <p className='semi-bold'>Notes</p>    
                     </div>
                     {props.notes.length === 0 && 
                         <div className='empty-box'>
@@ -95,14 +102,23 @@ function StudentList(props) {
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
                         <p className='semi-bold'>Live Class</p>
                     </div>
-                    <div className='empty-box'>
-                        {/* <Center > */}
-                            <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
-                        {/* </Center> */}
+                    <div>
+                         {(props.room && props.room.meeting_id) ?
+                        <div style={{display: 'flex', justifyContent: 'center', marginTop: '55px'}}>
+                        <button style={{color: 'white', backgroundColor: 'black', width: '200px', fontSize: '20px', padding: '11px', borderRadius: '5px'}}>
+                            <Link 
+                                to={`/student/live-class?meeting_id=${props.room.meeting_id}&room_id=${props.room._id}`} style={{fontFamily: 'Roboto'}}
+                            >Go to Live Class
+                            </Link>
+                        </button>
+                        </div>:
+                        <div className='empty-box'>
+                        <p style={{textAlign:'center',color:'white'}} 
+                        >Currently live class is not available.</p>
+                        </div>
+                        }
                     </div>
                 </div> 
-
             }
             {props.active ==='quiz' &&
                 <div>
@@ -110,10 +126,8 @@ function StudentList(props) {
                         <p className='semi-bold'>Quiz</p>
                     </div>
                     <div className='empty-box'>
-                        {/* <Center > */}
                             <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
-                        {/* </Center> */}
+                            >Upcoming Feature</p>
                     </div>
                 </div> 
             }

@@ -1,4 +1,4 @@
-import {Box,Text,Button,Flex,useToast,Modal,Center,Divider,Icon} from 'native-base'
+import {Box,Text,Button,Flex,useToast,Modal,Center,Divider,Icon,Spinner} from 'native-base'
 import React,{useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -16,20 +16,22 @@ function TeacherDashboard(props) {
     const toast = useToast()
     const [createModal,setCreateModal] = useState(false)
     const [del,setDel] = useState('')
+    const [loading,setLoading] = useState(false)
     const fetchclasshandler = async() => {
+        setLoading(true)
         const response = await axios ({
-            url : "http://localhost:3001/teacher/classes",
+            url : "/teacher/classes",
             method : "GET",
             //headers : {
                // authorization : props.auth.token
             //}
         })
         if(response.data.error){
-            toast.show({
-                title : 'ERROR!!!',
-                description : response.data.error,
-                status : 'error'
-            })
+            // toast.show({
+            //     title : 'ERROR!!!',
+            //     description : response.data.error,
+            //     status : 'error'
+            // })
         } else{
             // toast.show({
             //     title : 'Success!!!',
@@ -41,6 +43,7 @@ function TeacherDashboard(props) {
         if(response.data.classes){
             setRooms(response.data.classes)
         }
+        setLoading(false)
     }
     useEffect(() => {
         fetchclasshandler()
@@ -48,6 +51,7 @@ function TeacherDashboard(props) {
     }, [createModal,del]);
     return (
         <Box >
+
             {props.auth.user && 
                 <Header 
                     user={props.auth.user} 
@@ -56,6 +60,22 @@ function TeacherDashboard(props) {
                     dispatch={props.dispatch} 
                     location={location}
                 />
+            }
+            {loading &&
+                <Box 
+                    style={{
+                        position:'fixed',
+                        left:0,
+                        right:0,
+                        top:0,
+                        bottom:0,
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'center'
+                    }}
+                >
+                    <Spinner />
+                </Box>
             }
             <Divider />
             <div className="header-block flex sb ac">
@@ -89,7 +109,7 @@ function TeacherDashboard(props) {
             </div>
             
             {/*  */}
-            {rooms.length === 0 && 
+            {!loading &&rooms.length === 0 && 
                 <div className='empty-box'>
                     <Center >
                          <p  >You haven't created any classes yet.</p>

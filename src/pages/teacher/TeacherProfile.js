@@ -22,7 +22,7 @@ function TeacherProfile(props) {
         setLoading(true)
         try {
             const response = await axios({
-                url:'http://localhost:3001/teacher/profile',
+                url:'/teacher/profile',
                 method:'PATCH',
                 data:{
                     _id: props.auth.user._id,
@@ -76,7 +76,7 @@ function TeacherProfile(props) {
             image,
         );
         const response = await axios({
-            url:'http://localhost:3001/teacher/profile-img',
+            url:'/teacher/profile-img',
             method:'POST',
             data: formData,
         })
@@ -157,7 +157,16 @@ function TeacherProfile(props) {
                         margin='auto'
                         mt='4'
                         width='70px'
-                        onPress={profilePicUpdateHandler} >
+                        onPress={profilePicUpdateHandler}
+                        bg={'black'}
+                        _hover={{bg:'blueGray.900'}}
+                        _pressed={{
+                            background: 'black', 
+                        }}
+                        _focus={{
+                            background: 'black', 
+                        }}
+                        >
                             Update
                         </Button>}
                     </Box>
@@ -220,11 +229,17 @@ function TeacherProfile(props) {
                         <Center mt='5'>
                             <Button
                                 onPress={()=>setOpen(true)}
-                                isLoading = {loading}
+                                // isLoading = {loading}
                                 _text={{color: 'white'}}
                                 bg={'black'}
                                 _hover={{bg:'blueGray.900'}}
-                                isLoadingText = 'Logging in...'
+                                _pressed={{
+                                    background: 'black', 
+                                }}
+                                _focus={{
+                                    background: 'black', 
+                                }}
+                                // isLoadingText = 'Logging in...'
                                 mt = '4'
                             >
                                 Edit
@@ -268,6 +283,14 @@ function TeacherProfile(props) {
                                     isLoading={loading}
                                     isLoadingText='Updating....'
                                     onPress ={updateHandler}
+                                    bg={'black'}
+                                    _hover={{bg:'blueGray.900'}}
+                                    _pressed={{
+                                        background: 'black', 
+                                    }}
+                                    _focus={{
+                                        background: 'black', 
+                                    }}
                                 >
                                     Update
                                 </Button>

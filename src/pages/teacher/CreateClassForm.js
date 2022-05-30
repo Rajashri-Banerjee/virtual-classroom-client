@@ -14,7 +14,7 @@ function CreateClassForm(props) {
     const createClassHandler = async() => {
         setLoading(true)
         const response = await axios({
-            url : "http://localhost:3001/teacher/class",
+            url : "/teacher/class",
             method : "POST",
             data : {title,subtitle,poster},
             headers : {

@@ -12,7 +12,7 @@ function Classes() {
     const fetchclasshandler = async()=> {
         setLoading(true)
         const response = await axios({
-            url : 'http://localhost:3001/user/classes',
+            url : '/user/classes',
             method : 'GET'
         })
         console.log(response.data)

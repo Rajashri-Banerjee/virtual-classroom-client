@@ -17,6 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ChatBox from './ChatBox';
 import AdminAssignmentList from './AdminAssignmentList';
 import ViewListIcon from '@mui/icons-material/ViewList';
+import { Link } from 'react-router-dom'
 
 function List(props) {
     console.log(props.active)
@@ -41,6 +42,7 @@ function List(props) {
             return nt!==assignment
         })
         props.setAssignments(assignments)
+        props.updateHandler({assignment:assignments})
     }
     return (
         <Box width='100%'>
@@ -195,24 +197,12 @@ function List(props) {
                 <div>
                     <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
                         <p className='semi-bold'>Live Class</p>
-                        {/* <Button
-                            // mr={'0px'}
-                            leftIcon={<AddCircleIcon  sx={{ fontSize:28 }} />}
-                            variant='outline'
-                            _text={{color:'white'}}
-                            borderColor='white'
-                            _hover={{background:'black',borderColor:'white'}}
-                            // onPress={()=>props.setNotificationModal(true)}
-                            // padding={0}
-                        >
-                            Add New 
-                        </Button> */}
+                        
                     </div>
-                    <div className='empty-box'>
-                        {/* <Center > */}
-                            <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
-                        {/* </Center> */}
+                    <div style={{display: 'flex', justifyContent: 'center', marginTop: '55px'}}>
+                    <button style={{color: 'white', backgroundColor: 'black', width: '200px', fontSize: '20px', padding: '11px', borderRadius: '5px'}}>
+                        <Link to={`/teacher/live-class?room_id=${props.room._id}`} style={{fontFamily: 'Roboto'}}>Go to Live Class</Link>
+                    </button>
                     </div>
                 </div> 
 
@@ -238,7 +228,7 @@ function List(props) {
                     <div className='empty-box'>
                         {/* <Center > */}
                             <p style={{textAlign:'center',color:'white'}} 
-                            >Coming Soon...</p>
+                            >Upcoming Feature</p>
                         {/* </Center> */}
                     </div>
                 </div> 

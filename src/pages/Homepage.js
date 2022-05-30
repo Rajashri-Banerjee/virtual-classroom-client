@@ -4,7 +4,7 @@ import {Box,Button,Heading,Divider, Modal} from 'native-base'
 import { useNavigate,useLocation } from'react-router-dom'
 import { Grid } from '@mui/material'
 import Header from '../components/Header'
-import { BsFacebook,BsTwitter,BsLinkedin } from 'react-icons/bs'
+import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 
 function Homepage() {
     const navigate = useNavigate()
@@ -12,6 +12,15 @@ function Homepage() {
     const [open, setOpen] = useState(false)
     const location = useLocation()
     console.log(location)
+
+    const facebookOpener = async() => {
+        window.open('https://www.facebook.com/rekha.banerjee.3914/')
+    }
+
+    const linkedinOpener = async() => {
+        window.open('https://www.linkedin.com/in/rajashri-banerjee-4a7416175/')
+    }
+
     return (
         <Box  >
             <Header location = {location} />
@@ -19,9 +28,9 @@ function Homepage() {
             <div className='landing-section'>
                 <Grid container spacing={2} >
                     <Grid item md={6} >
-                        <h1 className='webtext'> Welcome To Our Virtual Classroom! </h1>
+                        <h1 className='webtext'> Welcome To Your Virtual Classroom! </h1>
                         <p className='active'> This virtual classroom has integrated benefits of a physical classroom with the convenience of a ‘no-physical-bar’ 
-                            virtual learning environment, minus the commuting hazards and expenses. This virtual classroom shall make it possible for the students to access all learning 
+                            virtual learning environment, minus the commuting hazards and expenses. This virtual classroom has made it possible for the students to access all learning 
                             materials from home, interact with the teachers through video conferencing calls to clarify their doubts and much more.
                         </p>
                         <button className='p-btn' onClick={()=>setOpen(true)} >Get Started</button>
@@ -79,7 +88,7 @@ function Homepage() {
                             <p className='feature-details' >
                                In each and every class that the teacher has created, we have a functionality of video conferencing call.
                                Teacher and students will be able to interact live through that functionality.
-                               We are planning to include quite a many features like screen-sharing, live chat, recording etc. there.
+                               We have included quite a many features like screen-sharing, live chat etc. there.
                             </p>
                         </div>
                         <div className='feature-box'>
@@ -93,7 +102,7 @@ function Homepage() {
                             <h3 className='h3' > Live Quiz </h3>
                             <Divider />
                             <p className='feature-details' >
-                                The teachers shall be able to create quiz questions and provide options among which one of them will be correct.
+                                This is an upcoming feature. The teachers shall be able to create quiz questions and provide options among which one of them will be correct.
                                 He/she will also be able to provide a timing to the quiz. The students will be able to attempt the quiz at the provided time
                                 and will get grades based on their performance in the quiz.
                             </p>
@@ -124,7 +133,7 @@ function Homepage() {
                                 />
                             </div>
                             
-                            <h3 className='h3' > Questionnaires </h3>
+                            <h3 className='h3' > Chat </h3>
                             <Divider />
                             <p className='feature-details' >
                                 The students and the teacher of a particular class will be able to interact with each other asynchronously via this feature.
@@ -139,9 +148,8 @@ function Homepage() {
             </div>
             <div className="footer">
                 <div className="social-icon-container flex wrap center">
-                    <BsFacebook className="footer-icon"/>
-                    <BsTwitter className="footer-icon"/>
-                    <BsLinkedin className="footer-icon"/>
+                    <BsFacebook className="footer-icon" onClick={facebookOpener} style={{cursor: 'pointer'}}/>
+                    <BsLinkedin className="footer-icon" onClick={linkedinOpener} style={{cursor: 'pointer'}}/>
                 </div>
         
             </div>
@@ -157,8 +165,7 @@ function Homepage() {
                         </Modal.Body>
                     </Modal.Content>
                 </Modal>
-            </Box>
-            
+            </Box>   
         </Box>
     )
 }

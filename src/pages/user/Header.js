@@ -8,6 +8,7 @@ import { Typography, Avatar } from '@mui/material'
 function Header({user,setCreateModal,createModal,dispatch,location}) {
     const navigate = useNavigate()
     const logoutHandler = () =>{
+        localStorage.removeItem('user')
         dispatch({
             type : 'ADD_USER',
             user : null,
@@ -20,7 +21,7 @@ function Header({user,setCreateModal,createModal,dispatch,location}) {
         <Box p='2' style={{backgroundColor:'#131D25'}}>
             <Flex direction='row' justify='space-between' alignItems='center' >
                     <div className="">
-                        <img className='logo' src="https://i.ibb.co/jwBHMRv/logo-free-file.png" alt="logo"  />
+                        <img className='logo' src="https://i.ibb.co/jwBHMRv/logo-free-file.png" alt="logo" onClick={()=>navigate('/')} />
                     </div>
                 <Flex direction='row' placeItems='center' alignItems='center'  >
                     <ul className='flex' >

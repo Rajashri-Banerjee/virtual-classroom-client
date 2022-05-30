@@ -17,8 +17,8 @@ function NotesForm(props) {
             return
         }
         props.setNotes((prevState) => {
-            props.updateHandler({note:prevState.concat({title,link})})
-            return prevState.concat({title,link})
+            props.updateHandler({note:prevState.concat({title, link, created_at : new Date()})})
+            return prevState.concat({title,link,created_at:new Date()})
         })
         props.setNotesModal(false)
     }
@@ -28,7 +28,7 @@ function NotesForm(props) {
         const formData = new FormData()
         formData.append("img",image)
         const response = await axios({
-            url:`http://localhost:3001/teacher/document-upload`,
+            url:`/teacher/document-upload`,
             method:'POST',
             data:formData
         })
@@ -67,7 +67,6 @@ function NotesForm(props) {
                             backgroundColor:'#1E1A1A'
                         }}
                     >Choose a File</Button>
-                    {image.name}
                    { console.log(image.name)}
                     <Button 
                         onPress={documentUploader} 
@@ -81,6 +80,7 @@ function NotesForm(props) {
                         isDisabled={!image}
                     >Upload</Button>
                 </Flex>
+                {image.name}
                {link &&  
                     <Box>
                         <Input

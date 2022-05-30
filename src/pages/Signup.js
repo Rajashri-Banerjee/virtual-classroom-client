@@ -26,7 +26,7 @@ function Signup(props) {
         if(username.length < 4){
             toast.show({
                 title : 'Validation Error!',
-                description : "Username length must be at least 4 chars.",
+                description : "Username length must be at least 4 characters",
                 status : 'error'
             })
             return
@@ -46,7 +46,7 @@ function Signup(props) {
         if(password.length< 8){
             toast.show({
                 title : 'Validation Error!',
-                description : "Password length must be at least 8 chars.",
+                description : "Password length must be at least 8 characters",
                 status : 'error'
             })
             return
@@ -54,7 +54,7 @@ function Signup(props) {
         
         setLoading(true)
         const response = await axios({
-            url : 'http://localhost:3001/signup',
+            url : '/signup',
             method : 'POST',
             data : {username,password,fullname,email}
         })
@@ -68,7 +68,8 @@ function Signup(props) {
             toast.show({
                 title : 'Success!!!',
                 description : 'Account created successfully!',
-                status : 'success'
+                status : 'success',
+                duration : 1000
             })
             axios.defaults.headers.common['authorization'] = response.data.token;
             props.dispatch({
@@ -77,11 +78,13 @@ function Signup(props) {
                 aunthenticated_as : 'student',
                 token : response.data.token
             })
-            if(search.next){
-                navigate(search.next)
-            }else{
-                navigate('/student/dashboard')
-            }
+            setTimeout(()=>{
+                if(search.next){
+                    navigate(search.next)
+                }else{
+                    navigate('/student/dashboard')
+                }
+            },2000)
         }
         setLoading(false)
         console.log(response)
@@ -96,7 +99,7 @@ function Signup(props) {
                                 <img className="login-logo" src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
                             </div>
                             <div>
-                                <h2 className='h22' >"Learn Together, Succeed Better"</h2>
+                                <h2 className='h22' >"Your One Stop Destination To Learn Together"</h2>
                             </div>
                             <div className="login-ill-container">
                                 <img className='login-ill' src="https://svgshare.com/i/dAS.svg" />
@@ -170,8 +173,13 @@ function Signup(props) {
                                 isLoadingText = 'Creating account...'
                                 mt = '4'
                                 _hover={{
-                                    background: '#1E1A1A',
-                                    
+                                    bg: 'blueGray.900', 
+                                }}
+                                _pressed={{
+                                    background: 'black', 
+                                }}
+                                _focus={{
+                                    background: 'black', 
                                 }}
                             >
                                 Signup

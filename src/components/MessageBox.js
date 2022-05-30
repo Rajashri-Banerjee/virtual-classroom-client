@@ -1,9 +1,8 @@
 import React from 'react'
 import {Button} from 'native-base'
 import DeleteIcon from '@mui/icons-material/Delete';
-
-function MessageBox({message,user,messageDeleteHandler,loading,admin}) {
-    console.log(message)
+function MessageBox({message,user,messageDeleteHandler,loading,admin,dloading}) {
+    console.log(message,user)
     return (
         <div className='message-box'>
            {message.user && message.user.fullname &&  <p className='message-username' >{message.user.fullname}</p>}
@@ -16,7 +15,7 @@ function MessageBox({message,user,messageDeleteHandler,loading,admin}) {
                     style={{cursor:'pointer', position:'absolute', bottom: 12, right: 10}}
                     onPress={()=>messageDeleteHandler(message)} 
                     variant='ghost'
-                    isLoading = {loading}
+                    isLoading = {message._id.toString()===dloading.toString()}
                     leftIcon={
                     <DeleteIcon 
                         style={{color : 'white', fontSize : '20px'}}
@@ -25,6 +24,21 @@ function MessageBox({message,user,messageDeleteHandler,loading,admin}) {
                 >
                 </Button>
 
+            }
+            {
+                user && user._id && message && message.admin && message.admin._id && message.admin._id === user._id && 
+                <Button
+                    style={{cursor:'pointer', position:'absolute', bottom: 12, right: 10}}
+                    onPress={()=>messageDeleteHandler(message)} 
+                    variant='ghost'
+                    isLoading = {message._id.toString()===dloading.toString()}
+                    leftIcon={
+                    <DeleteIcon 
+                        style={{color : 'white', fontSize : '20px'}}
+                    />
+                    }
+                >
+                </Button>
             }
         </div>
     )

@@ -10,7 +10,7 @@ function StudentClassCard({room,teacher,setDel}) {
     const navigate = useNavigate()
     const deleteHandler = async() => {
         const response = await axios({
-            url:`http://localhost:3001/user/class/join`,
+            url:`/user/class/join`,
             method:'DELETE',
             data : {class_id:room._id}
         })
@@ -34,7 +34,8 @@ function StudentClassCard({room,teacher,setDel}) {
                     <AiOutlineCloseCircle 
                         size='25'
                         style={{
-                            cursor:'pointer'
+                            cursor:'pointer',
+                            color: 'black'
                         }}
                         onClick={()=>{
                             setOpen(!open)

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Box,Input,Button,Heading,useToast,Center} from 'native-base'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
@@ -18,13 +18,27 @@ function TeacherLogin(props) {
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState('')
     const [password,setPassword] = useState('')
-    const loginHandler = async() => {
+
+    const loginHandler = async({token}) => {
+        console.log("login Handler Function is called")
+        var response
         setLoading(true)
-        const response = await axios({
-            url : 'http://localhost:3001/teacher/login',
-            method : 'POST',
-            data : {id:username,password}
-        })
+        if (token){
+            axios.defaults.headers.common['authorization'] = token;
+            response = await axios({
+                url : '/teacher/me',
+                method : 'GET',
+                data : {id:username,password}
+            })
+        }else{
+            response = await axios({
+                url : '/teacher/login',
+                method : 'POST',
+                data : {id:username,password}
+            })
+        }
+        
+        console.log(response)
         if(response.data.error){
             toast.show({
                 title : 'ERROR!!!',
@@ -42,9 +56,15 @@ function TeacherLogin(props) {
             props.dispatch({
                 type : 'ADD_USER',
                 user : response.data.teacher,
-                aunthenticated_as : 'teacher',
+                authenticated_as : 'teacher',
                 token : response.data.token
             })
+            const userData = {
+                ...response.data.teacher,
+                token:response.data.token,
+                authenticated_as : 'teacher'
+            }
+            localStorage.setItem('teacher',JSON.stringify(userData))
             if(search.next){
                 if((search.next==='/teachers/signup') || (search.next==='/teachers/login')){
                     navigate('/teacher/dashboard')
@@ -58,7 +78,18 @@ function TeacherLogin(props) {
         setLoading(false)
         console.log(response.data)
     }
-    
+    useEffect(()=>{
+        if(props.auth.user && props.auth.authenticated_as==='teacher'){
+            navigate('/teacher/dashboard')
+            return
+        }
+        const userData = JSON.parse(localStorage.getItem('teacher'))
+
+        if (userData && userData.token && userData.authenticated_as == 'teacher'){
+            loginHandler({token:userData.token})
+        }
+        console.log(userData)
+    },[])
     return (
         <div className='login-page flex sb center' >
             <div className='login-container'>
@@ -69,7 +100,7 @@ function TeacherLogin(props) {
                                 <img onClick={()=>navigate('/')} className="login-logo" src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
                             </div>
                             <div className='quote'>
-                                <h2 className='h22' >"Learn Together, Succeed Better"</h2>
+                                <h2 className='h22' >"Your One Stop Destination To Learn Together"</h2>
                             </div>
                             <div className="login-ill-container">
                                 <img className='signup-ill' src="https://svgshare.com/i/d9M.svg" />
@@ -126,6 +157,12 @@ function TeacherLogin(props) {
                                         _text={{color: 'white'}}
                                         bg={'black'}
                                         _hover={{bg:'blueGray.900'}}
+                                        _pressed={{
+                                            background: 'black', 
+                                        }}
+                                        _focus={{
+                                            background: 'black', 
+                                        }}
                                         isLoadingText = 'Logging in...'
                                         mt = '4'>
                                         Login

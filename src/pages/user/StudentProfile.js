@@ -21,7 +21,7 @@ function StudentProfile(props) {
         setLoading(true)
         try {
             const response = await axios({
-                url:'http://localhost:3001/user/profile',
+                url:'/user/profile',
                 method:'PATCH',
                 data:{
                     _id: props.auth.user._id,
@@ -76,7 +76,7 @@ function StudentProfile(props) {
             image,
         );
         const response = await axios({
-            url:'http://localhost:3001/user/profile-img',
+            url:'/user/profile-img',
             method:'POST',
             data: formData,
         })
@@ -158,7 +158,16 @@ function StudentProfile(props) {
                         margin='auto'
                         mt='4'
                         width='70px'
-                        onPress={profilePicUpdateHandler} >
+                        onPress={profilePicUpdateHandler}
+                        bg={'black'}
+                        _hover={{bg:'blueGray.900'}}
+                        _pressed={{
+                            background: 'black', 
+                        }}
+                        _focus={{
+                            background: 'black', 
+                        }}
+                        >
                             Update
                         </Button>}
                     </Box>
@@ -221,7 +230,7 @@ function StudentProfile(props) {
                         <Center mt='5'>
                             <Button
                                 onPress={()=>setOpen(true)}
-                                isLoading = {loading}
+                                // isLoading = {loading}
                                 _text={{color: 'white'}}
                                 bg={'black'}
                                 _hover={{bg:'blueGray.900'}}
@@ -270,9 +279,17 @@ function StudentProfile(props) {
                                 />
                                 <Button
                                     mt='2'
-                                    isLoading={loading}
-                                    isLoadingText='Updating....'
+                                    // isLoading={loading}
+                                    // isLoadingText='Updating....'
                                     onPress ={updateHandler}
+                                    bg={'black'}
+                                    _hover={{bg:'blueGray.900'}}
+                                    _pressed={{
+                                        background: 'black', 
+                                    }}
+                                    _focus={{
+                                        background: 'black', 
+                                    }}
                                 >
                                     Update
                                 </Button>

@@ -3,11 +3,10 @@ import {Box,Input,Button,Heading,useToast,Center} from 'native-base'
 
 function NotificationsForm(props) {
     const[body,setBody] = useState('')
-    
     const notificationHandler = ()=>{
         props.setNotifications((prevState)=>{
-            props.updateHandler({notification:prevState.concat({body})})
-            return prevState.concat({body})
+            props.updateHandler({notification:prevState.concat({body, created_at: new Date()})})
+            return prevState.concat({body, created_at: new Date()})
         })
         props.setNotificationModal(false)
     }

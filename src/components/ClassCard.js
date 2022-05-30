@@ -10,7 +10,7 @@ function ClassCard(props) {
     const [open,setOpen] = useState(false)
     const deleteHandler = async() => {
         const response = await axios({
-            url:`http://localhost:3001/teacher/class`,
+            url:`/teacher/class`,
             method:'DELETE',
             data : {_id:props.room._id}
         })
@@ -32,6 +32,7 @@ function ClassCard(props) {
             zIndex={1}
             overflow={'hidden'}
             borderRadius={5}
+            cursor= 'pointer'
             className='classcard'
             
         >

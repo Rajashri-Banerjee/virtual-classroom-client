@@ -6,12 +6,9 @@
 // import User from '../../components/User'
 // import { Document, Page } from 'react-pdf'
 // import { MdDownload } from 'react-icons/md';
-
-
-
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
-import { Box, Flex,Avatar,Text,Button,Input,useToast,Heading,Image,AspectRatio,Modal,Center,Divider} from 'native-base'
+import { Box, Flex,Avatar,Text,Button,Input,useToast,Heading,Image,AspectRatio,Modal,Center,Divider, Spinner} from 'native-base'
 import { useLocation,useNavigate,useParams } from 'react-router-dom'
 import List from '../../components/List'
 import NotificationsForm from '../../components/NotificationsForm'
@@ -28,7 +25,7 @@ import Drawer from './Drawer'
 import ParticipantsList from './ParticipantsList'
 function StudentClassDetails(props) {
 
-    console.log(props.auth.user)
+    // console.log(props)
     const location = useLocation()
     const navigate= useNavigate()
     const params = useParams()
@@ -36,7 +33,7 @@ function StudentClassDetails(props) {
     const toast = useToast()
 
     const [loading,setLoading] = useState(false)
-    const [room,setRoom] = useState()
+    const [room,setRoom] = useState(null)
     const [notes,setNotes] = useState([])
     const [notifications,setNotifications] = useState([])
     const [assignments,setAssignments] = useState([])
@@ -62,6 +59,7 @@ function StudentClassDetails(props) {
     }
 
     const getClass = async() =>{
+        console.log("Loading Again")
         if(!id){
             toast.show({
                 title:"Error",
@@ -72,7 +70,7 @@ function StudentClassDetails(props) {
         } 
         setLoading(true)
         const response = await axios({
-            url:`http://localhost:3001/user/class?id=${id}`,
+            url:`/user/class?id=${id}`,
             method:'GET'
         })
          console.log(response.data)
@@ -101,10 +99,31 @@ function StudentClassDetails(props) {
         }
     }
     useEffect(()=>{
+        console.log(room)
+        console.log('You are in Studnet Calss Details')
         getClass()
+        return ()=>{
+            setRoom(null)
+        }
     },[])
     return (
         <Box style={{backgroundColor:'#131D25'}} minHeight={'100vh'} >
+            {loading &&
+                <Box 
+                    style={{
+                        position:'fixed',
+                        left:0,
+                        right:0,
+                        top:0,
+                        bottom:0,
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'center'
+                    }}
+                >
+                    <Spinner />
+                </Box>
+            }
             {props.auth.user && 
                 <Header 
                     user={props.auth.user} 

@@ -53,7 +53,7 @@ function TeacherSignup(props) {
 
         setLoading(true)
         const response = await axios({
-            url : 'http://localhost:3001/teacher/signup',
+            url : '/teacher/signup',
             method : 'POST',
             data : {username,password,fullname,email}
         })
@@ -103,7 +103,7 @@ function TeacherSignup(props) {
                                 <img onClick={()=>navigate('/')} className="login-logo" src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
                             </div>
                             <div className='quote'>
-                                <h2 className='h22' >"Learn Together, Succeed Better"</h2>
+                                <h2 className='h22' >"Your One Stop Destination To Learn Together"</h2>
                             </div>
                             <div className="login-ill-container">
                                 <img className='signup-ill' src="https://svgshare.com/i/d9M.svg" />
@@ -177,8 +177,13 @@ function TeacherSignup(props) {
                                         bg={'black'}
                                         mt = '4'
                                         _hover={{
-                                            background: '#1E1A1A',
-                                            
+                                            bg: 'blueGray.900',  
+                                        }}
+                                        _pressed={{
+                                            background: 'black', 
+                                        }}
+                                        _focus={{
+                                            background: 'black', 
                                         }}
                                     >
                                         Signup 

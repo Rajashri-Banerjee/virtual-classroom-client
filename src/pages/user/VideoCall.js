@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+// import ChannelForm from '../../components/ChannelForm'
 import {
     ClientConfig,
     IAgoraRTCRemoteUser,
@@ -12,8 +13,8 @@ import {
   } from "agora-rtc-react";
   
 const config = { 
-    mode: "rtc", codec: "vp8",
-  };
+  mode: "rtc", codec: "vp8",
+};
 
   
   const appId  = "ab9f49312ba24715b21f60b087856cb9"; //ENTER APP ID HERE

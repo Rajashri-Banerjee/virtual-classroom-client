@@ -30,10 +30,10 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import QuizIcon from '@mui/icons-material/Quiz';
 import ParticipantsList from './ParticipantsList';
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
-//   width: drawerWidth,
+    // width: drawerWidth,
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -106,6 +106,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer({participantsList,users,toast,room,notifications,assignments,notes,updateHandler,teachers,chat,user}) {
+    // console.log(room)
+    // console.log(room)
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -121,7 +123,6 @@ export default function MiniDrawer({participantsList,users,toast,room,notificati
     return (
         <Box 
             sx={{ display: 'flex',position:'relative',justifyContent:'space-between'}} 
-            
         >
             <CssBaseline />
             <Drawer variant="permanent" 
@@ -162,7 +163,7 @@ export default function MiniDrawer({participantsList,users,toast,room,notificati
                         <ListItemIcon>
                             <VoiceChatIcon sx={{color:'white'}}/>
                         </ListItemIcon>
-                        <ListItemText primary='Live Class' />
+                        <ListItemText primary='Live' />
                     </ListItem>
                     <ListItem style={{background:active==="quiz"?"black":"transparent"}} button key='Quiz' onClick={()=>setActive('quiz')}>
                         <ListItemIcon>
@@ -215,11 +216,11 @@ export default function MiniDrawer({participantsList,users,toast,room,notificati
             <Divider color="gray" />
             {open2 && <p style={{marginLeft:'10px'}}>Teacher</p>}
             <Divider color="gray" />
-            {teachers && <ParticipantsList users={[teachers]} open={open2} />}
+            {teachers && <ParticipantsList users={[teachers]} room={room} open={open2} />}
                 <Divider color="gray" />
                     {open2 && <p style={{marginLeft:'10px'}}>Participants</p>}
                 <Divider color="gray" />
-            {users && <ParticipantsList users={users} open={open2} />}
+            {users && <ParticipantsList users={users} open={open2} room={room}   />}
             </Drawer>
         </Box>
     );

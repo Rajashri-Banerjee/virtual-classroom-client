@@ -14,13 +14,16 @@ function AssignmentForm(props) {
     
      const assignmentHandler = ()=> {
          if(!link){
-            console.log("Please upload a document first")
             alert('Please upload a document first')
             return
         }
+        if (Date.parse(deadline) < Date.now()){
+            alert(`Deadline can't be before current time. Please try again!`)
+            return
+        }
         props.setAssignments((prevState) => {
-            props.updateHandler({assignment:prevState.concat({title,link,deadline,created_at})})
-            return prevState.concat({title,link,deadline,created_at})
+            props.updateHandler({assignment:prevState.concat({title,link,deadline,created_at:new Date()})})
+            return prevState.concat({title,link,deadline,created_at: new Date()})
         })
         props.setAssignmentsModal(false)
     }
@@ -28,11 +31,11 @@ function AssignmentForm(props) {
         const formData = new FormData()
         formData.append("img",image)
         const response = await axios({
-            url:`http://localhost:3001/teacher/document-upload`,
+            url:`/teacher/document-upload`,
             method:'POST',
             data:formData
         })
-        console.log(response.data)
+        // console.log(response.data)
         if(response.data && response.data.error){
             alert(response.data.error)
             toast.show({
@@ -49,7 +52,7 @@ function AssignmentForm(props) {
     return (
         <div>
             <Box>
-                <Flex direction='row' justify='space-between'>
+                <Flex direction='row' justify='space-between' flexWrap={'wrap'}>
                     <input 
                         type="file"
                         onChange={(e)=>setImage(e.target.files[0])}
@@ -66,8 +69,6 @@ function AssignmentForm(props) {
                             backgroundColor:'#1E1A1A'
                         }}
                     >Choose a File</Button>
-                    {image.name}
-                   { console.log(image.name)}
                     <Button 
                         onPress={documentUploader} 
                         bg={'black'}
@@ -79,6 +80,7 @@ function AssignmentForm(props) {
                         }}
                         isDisabled={!image}
                     >Upload</Button>
+                    {image.name}
                 </Flex>
                 {link &&  
                     <Box>
@@ -94,12 +96,14 @@ function AssignmentForm(props) {
                         value={link}
                         onChangeText={setLink}
                         /> */}
+                        <p style={{marginBottom: '5px', fontFamily: 'Roboto'}}>Deadline</p>
                         <input
                             mt = '5px'
                             placeholder='Assignment Deadline'
                             value={deadline}
                             onChangeText={setDeadline}
                             type = 'datetime-local'
+                            min = {new Date().toISOString().slice(0, -8)}
                             onChange = {(e)=> {setDeadline(e.target.value)}}
                         />
                     </Box>
@@ -110,9 +114,20 @@ function AssignmentForm(props) {
                     isLoading={loading} 
                     isLoadingText='Uploading...' 
                     bg={'black'}
+
                     _hover={{
                         backgroundColor:'#1E1A1A'
                     }}
+                    _pressed={{
+                        backgroundColor:'#1E1A1A'
+                    }}
+                    _focus={{
+                        backgroundColor:'#1E1A1A'
+                    }}
+                    _focusVisible={{
+                        backgroundColor:'#1E1A1A'
+                    }}
+                    _
                     isDisabled={!title || !deadline}
                 >
                     Add

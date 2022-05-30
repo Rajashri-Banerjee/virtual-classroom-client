@@ -30,7 +30,7 @@ import ForumIcon from '@mui/icons-material/Forum';
 import VoiceChatIcon from '@mui/icons-material/VoiceChat';
 import QuizIcon from '@mui/icons-material/Quiz';
 import ParticipantsList from './ParticipantsList';
-const drawerWidth = 240;
+// const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
 //   width: drawerWidth,
@@ -105,7 +105,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MiniDrawer({children,participantsList,users,toast,room,notifications,setNotifications,assignments,setAssignments,notes,setNotes,setNotificationModal,setAssignmentsModal,setNotesModal,updateHandler,user}) {
+export default function MiniDrawer({children,participantsList,users,setUsers,toast,room,notifications,setNotifications,assignments,setAssignments,notes,setNotes,setNotificationModal,setAssignmentsModal,setNotesModal,updateHandler,user}) {
+    console.log(room)
     const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [open2, setOpen2] = useState(false);
@@ -161,7 +162,7 @@ export default function MiniDrawer({children,participantsList,users,toast,room,n
                     <ListItemIcon>
                         <VoiceChatIcon sx={{color:'white'}}/>
                     </ListItemIcon>
-                    <ListItemText primary='Live Class' />
+                    <ListItemText primary='Live' />
                 </ListItem>
                 <ListItem style={{background:active==="quiz"?"black":"transparent"}} button key='Quiz' onClick={()=>setActive('quiz')}>
                     <ListItemIcon>
@@ -232,6 +233,7 @@ export default function MiniDrawer({children,participantsList,users,toast,room,n
                                     // style={{cursor:'pointer'}}
                                     // className='li'
                                     sx={{color:'white'}}
+                                    style={{cursor:'pointer'}}
                                 />
                             </CopyToClipboard>}
                 
@@ -250,7 +252,7 @@ export default function MiniDrawer({children,participantsList,users,toast,room,n
             } */}
             <CssBaseline />
              <Divider color="gray" />
-            {users && <ParticipantsList users={users} open={open2} />}
+            {users && <ParticipantsList setUsers={setUsers} users={users} open={open2} room={room} admin/>}
             
         </Drawer>
     </Box>

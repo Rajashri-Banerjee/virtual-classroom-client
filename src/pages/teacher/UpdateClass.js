@@ -1,6 +1,6 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useRef} from 'react'
 import axios from 'axios'
-import { Box, Flex,Avatar,Text,Button,Input,useToast,Heading,Image,AspectRatio,Modal,Center,Divider} from 'native-base'
+import { Box, Flex,Avatar,Text,Button,Input,useToast,Heading,Image,AspectRatio,Modal,Center,Divider, Spinner} from 'native-base'
 import { useLocation,useNavigate,useParams } from 'react-router-dom'
 import List from '../../components/List'
 import NotificationsForm from '../../components/NotificationsForm'
@@ -37,6 +37,7 @@ function UpdateClass(props) {
     const [users,setUsers] = useState([])
     const [poster,setPoster] = useState('')
     const [image,setImage] = useState('')
+    const inputFile = useRef(null) 
 
     const [posterModal,setPosterModal] = useState(false)
 
@@ -51,7 +52,7 @@ function UpdateClass(props) {
         } 
         setLoading(true)
         const response = await axios({
-            url:`http://localhost:3001/teacher/class?id=${id}`,
+            url:`/teacher/class?id=${id}`,
             method:'GET'
         })
         setLoading(false)
@@ -79,7 +80,7 @@ function UpdateClass(props) {
         seteditModal(false)
         
         const abc = await axios({
-            url:'http://localhost:3001/teacher/class',
+            url:'/teacher/class',
             method:'PATCH',
             data:{
                 ...room,
@@ -98,16 +99,16 @@ function UpdateClass(props) {
         const formData = new FormData()
         formData.append("img",image)
         const response = await axios({
-            url:`http://localhost:3001/teacher/class-poster?id=${id}`,
+            url:`/teacher/class-poster?id=${id}`,
             method:'POST',
             data:formData
         })
         if(response.data && response.data.error){
-            toast.show({
-                title:'Error',
-                description:response.data.error,
-                status:'error'
-            })
+            // toast.show({
+            //     title:'Error',
+            //     description:response.data.error,
+            //     status:'error'
+            // })
             return
         }
         getClass()
@@ -119,6 +120,22 @@ function UpdateClass(props) {
     },[])
     return (
         <div style={{position:'relative'}} className='teacher-update-class-page' >
+            {loading &&
+                <Box 
+                    style={{
+                        position:'fixed',
+                        left:0,
+                        right:0,
+                        top:0,
+                        bottom:0,
+                        display:'flex',
+                        alignItems:'center',
+                        justifyContent:'center'
+                    }}
+                >
+                    <Spinner />
+                </Box>
+            }
             <div style={{position:'relative'}}>
                 <Box>
                     {props.auth.user && 
@@ -175,11 +192,12 @@ function UpdateClass(props) {
             </Box>
             </div>
             <div>
-                <Drawer 
+                {room && <Drawer 
                     toast={toast} 
                     room={room}
                     children={<h1>Hello</h1>} 
                     users = {users}
+                    setUsers ={setUsers}
                     notifications={notifications}
                     assignments={assignments}
                     notes={notes}
@@ -191,7 +209,7 @@ function UpdateClass(props) {
                     setNotes={setNotes}
                     updateHandler={updateHandler}
                     user={props.auth.user}
-                />
+                />}
             </div>
             <Box mt='10px' p='5' width='600px' >
                 <Box>
@@ -206,9 +224,9 @@ function UpdateClass(props) {
                         setAssignmentsModal={setAssignmentsModal}
                         setNotesModal={setNotesModal}
                     />
-                    <Button mt='20px'isLoading={loading} isLoadingText='Updating...' variant='ghost'>
+                    {/* {loading && <Button mt='20px'isLoading={loading} isLoadingText='Updating...' variant='ghost'>
                         
-                    </Button>
+                    </Button>} */}
                 </Box>
             </Box>
             <Modal isOpen = {notificationModal} onClose={()=>setNotificationModal(false)}>
@@ -303,15 +321,39 @@ function UpdateClass(props) {
                     <Modal.Body>
                         {room && 
                             <Box>
-                                <Flex direction='row'>
+                                <Flex direction='row' justifyContent={'space-between'}>
                                     <input 
                                     // onChangeText={setSubtitle}
-                                        placeholder = 'Class Poster'
                                         type='file'
                                         onChange={(e)=>setImage(e.target.files[0])}
-                                        // value={subtitle}
+                                        ref={inputFile} 
+                                        style={{display: 'none'}}
                                     />
-                                    <button onClick={posterUpdater}>Upload</button>
+                                    <Button
+                                        onPress={()=>inputFile.current.click()} 
+                                        bg={'black'}
+                                        _hover={{
+                                            backgroundColor:'#1E1A1A'
+                                        }} 
+                                        _focus={{
+                                            backgroundColor:'#1E1A1A'
+                                        }}
+                                        // value={subtitle}
+                                    >
+                                        Choose a file
+                                    </Button>
+                                    <Button 
+                                        onClick={posterUpdater}
+                                        bg={'black'}
+                                        _hover={{
+                                            backgroundColor:'#1E1A1A'
+                                        }} 
+                                        _focus={{
+                                            backgroundColor:'#1E1A1A'
+                                        }}
+                                    >
+                                        Upload
+                                    </Button>
                                 </Flex>
                             </Box>
                         }

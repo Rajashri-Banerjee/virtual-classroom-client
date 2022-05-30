@@ -19,13 +19,24 @@ function Login(props) {
     const [loading,setLoading] = useState(false)
     const [password,setPassword] = useState('')
     const [error,setError] = useState('')
-    const loginHandler = async() => {
+
+    console.log(search)
+    const loginHandler = async({token}) => {
+        var response
         setLoading(true)
-        const response = await axios({
-            url : 'http://localhost:3001/login',
-            method : 'POST',
-            data : {id:username,password}
-        })
+        if(token){
+            axios.defaults.headers.common['authorization'] = token;
+            response = await axios({
+                url: '/user/me',
+                method: 'GET',
+            })
+        }else{
+            response = await axios({
+                url : '/login',
+                method : 'POST',
+                data : {id:username,password}
+            })
+        }
         if(response.data.error){
             toast.show({
                 title : 'ERROR!!!',
@@ -33,11 +44,6 @@ function Login(props) {
                 status : 'error'
             })
         } else{
-            // toast.show({
-            //     title : 'Success!!!',
-            //     description : 'Login Successful!',
-            //     status : 'success'
-            // })
             axios.defaults.headers.common['authorization'] = response.data.token;
             props.dispatch({
                 type : 'ADD_USER',
@@ -45,21 +51,39 @@ function Login(props) {
                 aunthenticated_as : 'student',
                 token : response.data.token
             })
+            const userData = {
+                ...response.data.user,
+                token:response.data.token,
+                aunthenticated_as : 'student'
+            }
+            localStorage.setItem('user',JSON.stringify(userData))
             if(search.next){
-                navigate(search.next)
-            }else{
+                if((search.next==='/login') || (search.next==='/signup')){
+                    navigate('/student/dashboard')
+                    return
+                }
+                if(search.room_id && search.next.includes('/live-class')){
+                    navigate('/student/class-details/'+search.room_id)
+                }
+                else{
+                    navigate(search.next)
+                }
+            }
+            else{
                 navigate('/student/dashboard')
             }
         }
         setLoading(false)
-        
         console.log(response.data)
     }
-    console.log(search)
     useEffect(()=>{
-        console.log(props.auth)
-        if(props.auth.user){
+        if(props.auth.user && props.auth.authenticated_as==='student'){
             navigate('/student/dashboard')
+            return
+        }
+        const userData = JSON.parse(localStorage.getItem('user'))
+        if(userData && userData.token && userData.aunthenticated_as == 'student'){
+            loginHandler({token:userData.token})
         }
     },[])
     return (
@@ -72,7 +96,7 @@ function Login(props) {
                                 <img className="login-logo" src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
                             </div>
                             <div>
-                                <h2 className='h22' >"Learn Together, Succeed Better"</h2>
+                                <h2 className='h22' >"Your One Stop Destination To Learn Together"</h2>
                             </div>
                             <div className="login-ill-container">
                                 <img className='login-ill' src="https://svgshare.com/i/dAS.svg" />
@@ -128,7 +152,15 @@ function Login(props) {
                                         isLoading = {loading}
                                         _text={{color: 'white'}}
                                         bg={'black'}
-                                        _hover={{bg:'blueGray.900'}}
+                                        _hover={{
+                                            bg:'blueGray.900'
+                                        }}
+                                        _pressed={{
+                                            background: 'black', 
+                                        }}
+                                        _focus={{
+                                            background: 'black', 
+                                        }}
                                         isLoadingText = 'Logging in...'
                                         mt = '4'>
                                         Login

@@ -1,0 +1,52 @@
+
+
+/* red */
+.control-icon{
+  /* padding:5px 10px; */
+  color:black;
+}
+.control-icon2 {
+  /* padding:5px 10px; */
+  color: #CECECE;
+  margin: 10px 10px 10px 0px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 19px;
+}
+.control-icon3 {
+  margin-right: 2px;
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+}
+
+.css-r8g3vo-MuiDrawer-docked{
+  white-space:normal !important;
+}
+.css-bshv44-MuiButtonBase-root-MuiListItem-root{
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  padding-left: 16px !important;
+  /* padding-right: 16px !important; */
+}
+.MuiListItem-padding{
+  /* padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    padding-left: 16px !important; */
+    /* padding-right: 16px !important; */
+    /* padding: 0px !important; */
+}

@@ -27,7 +27,7 @@ function UserJoin(props) {
         }
         setLoading(true)
         const response = await axios({
-            url:`http://localhost:3001/student/class?id=${id}`,
+            url:`/student/class?id=${id}`,
             method:'GET'
         })
         setLoading(false)
@@ -56,7 +56,7 @@ function UserJoin(props) {
         }
         setLoading(true)
         const response = await axios({
-            url:`http://localhost:3001/user/class/join`,
+            url:`/user/class/join`,
             method:'POST',
             data : {class_id : id}
         })
@@ -155,9 +155,10 @@ function UserJoin(props) {
                     _focusVisible={{
                         bg:'blueGray.900'
                     }}
-                    
-                >
-                    
+                    _pressed={{
+                        bg:'black'
+                    }}
+                > 
                     Join Class Now
                 </Button>
             </div>

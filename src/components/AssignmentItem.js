@@ -30,18 +30,19 @@ function AssignmentItem({assignment, user}) {
         const formData = new FormData()
         formData.append("img",image)
         const response = await axios({
-            url:`http://localhost:3001/user/document-upload`,
+            url:`/user/document-upload?_id=${assignment._id}`,
             method:'POST',
             data:formData
         })
         console.log(response.data)
         if(response.data && response.data.error){
-            alert(response.data.error)
+            // alert(response.data.error)
             toast.show({
                 title:'Error',
                 description:response.data.error,
                 status:'error'
             })
+            setOpen(false)
             return
         }
         if(response.data.uri){
@@ -52,7 +53,7 @@ function AssignmentItem({assignment, user}) {
     const submissionHandler = async()=> {
         const formData = {doclink:link, submitted_at:created_at, _id:assignment._id}
         const response = await axios({
-            url:`http://localhost:3001/user/assignment-submission`,
+            url:`/user/assignment-submission`,
             method:'POST',
             data:formData
         })
@@ -107,36 +108,42 @@ function AssignmentItem({assignment, user}) {
                         Submit Assignment
                     </Modal.Header>
                     <Modal.Body>
-                    <Flex direction='row' justify='space-between'>
-                    <input 
-                        type="file"
-                        onChange={(e)=>setImage(e.target.files[0])}
-                        ref={inputFile}
-                        style={{display: 'none'}}
-                        />
-                     <Button
-                        isDisabled ={submissionChecker()}
-                        onPress={()=>inputFile.current.click()} 
-                        bg={'black'}
-                        _hover={{
-                            backgroundColor:'#1E1A1A'
-                        }} 
-                        _focus={{
-                            backgroundColor:'#1E1A1A'
-                        }}
-                    >{submissionChecker()?'Already submitted':'Choose a file'}</Button>
+                    <Flex direction='column' justify='space-between'>
+                        <Flex direction='row' justify='space-between'>
+                            <input 
+                                    type="file"
+                                    onChange={(e)=>setImage(e.target.files[0])}
+                                    ref={inputFile}
+                                    style={{display: 'none'}}
+                                />
+                            <Button
+                                isDisabled ={submissionChecker()}
+                                onPress={()=>inputFile.current.click()} 
+                                bg={'black'}
+                                _hover={{
+                                    backgroundColor:'#1E1A1A'
+                                }} 
+                                _focus={{
+                                    backgroundColor:'#1E1A1A'
+                                }}
+                            >
+                                {submissionChecker()?'Already submitted':'Choose a file'}
+                            </Button>
+                            {!submissionChecker() && 
+                                <Button 
+                                    onPress={documentUploader} 
+                                    bg={'black'}
+                                    _hover={{
+                                        backgroundColor:'#1E1A1A'
+                                    }} 
+                                    _focus={{
+                                        backgroundColor:'#1E1A1A'
+                                    }}
+                                    isDisabled={!image}
+                                >Upload</Button>
+                            }
+                        </Flex>
                     {image.name}
-                    {!submissionChecker() && <Button 
-                        onPress={documentUploader} 
-                        bg={'black'}
-                        _hover={{
-                            backgroundColor:'#1E1A1A'
-                        }} 
-                        _focus={{
-                            backgroundColor:'#1E1A1A'
-                        }}
-                        isDisabled={!image}
-                    >Upload</Button>}
                     {link && <Button
                         onPress={submissionHandler}
                         bg={'black'}
