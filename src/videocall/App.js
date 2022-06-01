@@ -315,7 +315,7 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
       >
       <p 
         className='meeting_id'
-        style={{color: '#444444'}}
+        style={{color: '#ffffff'}}
       >Meeting ID : {meetingId} 
       </p>
         <Control 
