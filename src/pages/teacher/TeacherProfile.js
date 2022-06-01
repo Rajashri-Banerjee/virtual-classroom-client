@@ -107,7 +107,17 @@ function TeacherProfile(props) {
     };
 
     return (
-        <Box _light={{bg:'#131D25'}} minH={'100vh'}  >
+        <Box _light={{bg:'#131D25'}} minH={'100vh'}  
+            // style={{
+            //     // backgroundColor:'red',
+            //     display:'flex',
+            //     alignItems:'center',
+            //     justifyContent:'center'
+            // }}
+        >
+            <div
+                style={{width:'100%'}}
+            >
             {props.auth && props.auth.user && 
                 <Box margin='auto' w='95%' maxWidth={'500px'} mt='5' >
                     <Box
@@ -249,6 +259,7 @@ function TeacherProfile(props) {
                     
                 </Box>
             }
+            </div>
             <Modal isOpen = {open} onClose={()=>setOpen(false)}>
                 <Modal.Content>
                     <Modal.CloseButton/>

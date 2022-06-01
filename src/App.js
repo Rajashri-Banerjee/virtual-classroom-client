@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import './css/main.css'
+
 import {BrowserRouter, Routes, Route, Redirect} from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'

@@ -79,11 +79,11 @@ function TeacherDashboard(props) {
             }
             <Divider />
             <div className="header-block flex sb ac">
-                <h2 style={{paddingLeft:'20px'}} >My Classes</h2>
+                <h2 style={{paddingLeft:'20px', fontSize: '18px'}} >My Classes</h2>
                 <div className="small-button-container">
                     <Button
-                        mr={'20px'}
-                        leftIcon={<IoIosAddCircle size='30px' />}
+                        mr={'10px'}
+                        leftIcon={<IoIosAddCircle size='15px' />}
                         variant='outline'
                         _text={{color:'white'}}
                         borderColor='white'

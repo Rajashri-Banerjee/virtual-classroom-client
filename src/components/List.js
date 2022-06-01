@@ -48,20 +48,14 @@ function List(props) {
         <Box width='100%'>
             {props.active ==='notifications' &&
                 <div>
-                    <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
+                    <div  className='flex sb notification-card' style={{background:'black'}} >
                         <p className='semi-bold'>Notifications</p>
-                        <Button
-                            // mr={'0px'}
-                            leftIcon={<AddCircleIcon  sx={{ fontSize:28 }} />}
-                            variant='outline'
-                            _text={{color:'white'}}
-                            borderColor='white'
-                            _hover={{background:'black',borderColor:'white'}}
-                            onPress={()=>props.setNotificationModal(true)}
-                            // padding={0}
+                        <button
+                            onClick={()=>props.setNotificationModal(true)}
+                            className='add-new-btn'
                         >
-                            Add New 
-                        </Button>
+                           {<AddCircleIcon  sx={{ fontSize:28, marginRight: '2px' }} />} Add New 
+                        </button>
                     </div>
                     {props.notifications.length === 0 && 
                         <div className='empty-box'>
@@ -73,13 +67,14 @@ function List(props) {
                     }
                     {
                         props.notifications && props.notifications.map((notification,index)=>{
-                            return <div  className='notification-card flex ac sb' >
-                                <p className='roboto'> ➤ {notification.body}</p>
+                            return <div  className='notification-card flex sb p20' >
+                                <p className='roboto' style={{textAlign:'justify'}}> ➤ {notification.body}</p>
+                                <div className='del-icon'>
                                 <DeleteIcon 
-                                        sx={{marginTop:-2,cursor:'pointer',marginLeft:2}}
-                                        onClick={()=>deleteHandler(notification)} 
-                                        
+                                        sx={{marginTop:1,cursor:'pointer', right:'25px'}}
+                                        onClick={()=>deleteHandler(notification)}
                                     />
+                                </div>
                                 <span className='date-span'>   
                                     {new Date(notification.created_at).toString().split('GMT')[0]}
                                 </span>
@@ -91,20 +86,16 @@ function List(props) {
             }
             {props.active ==='assignments' &&
                 <div>
-                    <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
+                    <div  className='flex sb notification-card' style={{background:'black'}} >
                         <p className='semi-bold'>Assignments</p>
-                        <Button
+                        <button
                             // mr={'0px'}
-                            leftIcon={<AddCircleIcon  sx={{ fontSize:28 }} />}
-                            variant='outline'
-                            _text={{color:'white'}}
-                            borderColor='white'
-                            _hover={{background:'black',borderColor:'white'}}
-                            onPress={()=>props.setAssignmentsModal(true)}
+                            onClick={()=>props.setAssignmentsModal(true)}
+                            className='add-new-btn'
                             // padding={0}
                         >
-                            Add New 
-                        </Button>
+                           {<AddCircleIcon  sx={{ fontSize:28, marginRight: '2px' }} />} Add New 
+                        </button>
                     </div>
                     {props.assignments.length === 0 && 
                         <div className='empty-box'>
@@ -116,49 +107,47 @@ function List(props) {
                     }
                     {
                         props.assignments && props.assignments.map((assignment,index)=>{
-                            return <div  className='notification-card flex ac sb' >
-                                <p className='roboto'> ➤ {assignment.title}</p>
+                            return <div  className='notification-card flex ac sb assignment-card' >
+                                <p className='roboto ass-title'> ➤ {assignment.title}</p>
                                 <div className='flex ac sb' >
                                     <ViewListIcon
-                                        sx={{marginTop:-2,cursor:'pointer',marginRight:2}} 
+                                        sx={{cursor:'pointer',marginRight:2}} 
                                         onClick={()=>setAssignmentList(assignment)}  
                                     />
                                     <DownloadIcon
-                                        sx={{marginTop:-2,cursor:'pointer'}} 
+                                        sx={{cursor:'pointer'}} 
                                         onClick={()=>window.open(assignment.link)}  
                                     />
                                     <DeleteIcon 
-                                        sx={{marginTop:-2,cursor:'pointer',marginLeft:2}}
+                                        sx={{cursor:'pointer',marginLeft:2}}
                                         onClick={()=>assignmentsDeleteHandler(assignment)}  
                                     /> 
                                 </div>
-                                <span className='date-span'>   
+                            <div className='date'>
+                                <span className='date-span date-span3'>   
                                     Shared at : {new Date(assignment.created_at).toString().split('GMT')[0]}
                                 </span>
-                                <span className='date-span2'>   
+                                <span className='date-span2 date-span4'>   
                                    Deadline : {new Date(assignment.deadline).toString().split('GMT')[0]}
                                 </span>
                             </div>
+                        </div>
                         })
                     }
                 </div> 
             }
             {props.active ==='notes' &&
                 <div>
-                    <div  className='notification-card flex sb' style={{background:'black',padding:'10px 20px'}} >
+                    <div  className='notification-card flex sb' style={{background:'black'}} >
                         <p className='semi-bold'>Notes</p>
-                        <Button
+                        <button
                             // mr={'0px'}
-                            leftIcon={<AddCircleIcon  sx={{ fontSize:28 }} />}
-                            variant='outline'
-                            _text={{color:'white'}}
-                            borderColor='white'
-                            _hover={{background:'black',borderColor:'white'}}
-                            onPress={()=>props.setNotesModal(true)}
+                            className='add-new-btn'
+                            onClick={()=>props.setNotesModal(true)}
                             // padding={0}
                         >
-                            Add New 
-                        </Button>
+                           {<AddCircleIcon  sx={{ fontSize:28, marginRight: '2px' }} />} Add New 
+                        </button>
                     </div>
                     {props.notes.length === 0 && 
                         <div className='empty-box'>
@@ -170,24 +159,26 @@ function List(props) {
                     }
                     {
                         props.notes && props.notes.map((note,index)=>{
-                            return <div  className='notification-card flex ac sb' >
+                            return <div  className='notification-card flex ac sb note' >
                                 <p className='roboto'> ➤ {note.title}</p>
                                 <div className='flex ac sb' >
                                     <DownloadIcon
-                                        sx={{marginTop:-2,cursor:'pointer'}} 
+                                        sx={{cursor:'pointer'}} 
                                         onClick={()=>window.open(note.link)}  
                                     />
                                     <DeleteIcon 
-                                        sx={{marginTop:-2,cursor:'pointer',marginLeft:2}}
+                                        sx={{cursor:'pointer',marginLeft:2}}
                                         onClick={()=>notesDeleteHandler(note)} 
                                         
                                     />
                                    
                                 </div>
+                                <div className="date">
+                                    <span className='date-span'>   
+                                        {new Date(note.created_at).toString().split('GMT')[0]}
+                                    </span>
+                                </div>
                                 
-                                <span className='date-span'>   
-                                    {new Date(note.created_at).toString().split('GMT')[0]}
-                                </span>
                             </div>
                         })
                     }

@@ -71,7 +71,7 @@ a{
 .list {
     list-style: none;
     /* display: inline-block; */
-    margin-right: 20px ;
+    margin-right: 5px ;
     cursor: pointer;
     color: #fff !important;
 }
@@ -149,7 +149,7 @@ a{
 .feature-box {
     background-color: #090515;
     width: 400px;
-    height: 360px;
+    height: auto;
     padding: 5px;
     margin-top: 20px;
     border-radius: 5px;
@@ -179,7 +179,8 @@ a{
 }
 .footer-icon{
     font-size: 20px;
-    margin: 0px 10px;
+    margin: 0px 0px;
+    color: white;
 }
 /* Eend Laanding Page */
 .chtoku{
@@ -340,7 +341,7 @@ a{
     color: #fff;
     margin:10px;
     border-radius: 8px;
-    padding: 10px 20px;
+    padding:10px 20px !important;
     position:relative;
 }
 .date-span{
@@ -487,7 +488,9 @@ a{
 
 
 
-
+.note {
+    padding-bottom: 20px !important;
+}
 
 /* Video Call App */
 
@@ -603,4 +606,46 @@ a{
 .live-class-btn{
     color: 'white';
 }
+                                                                                                                                        
 
+/* Responsive */
+.login-btn-home{
+    background: transparent;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+.login-btn-home:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+    background:blue;
+}
+
+.add-new-btn{
+    background: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border : 1px solid white;
+    outline: none;
+    border-radius: 5px;
+    /* margin: 0px 0px 0px 10px; */
+    padding:10px 10px;
+}
+
+.date{
+    margin-top: 10px;
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 3px;
+}
+
+.assignment-card{
+    padding-bottom: 20px !important;
+}

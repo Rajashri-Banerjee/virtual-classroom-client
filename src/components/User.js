@@ -37,8 +37,13 @@ function User({user,open,room,admin,setUsers}) {
             <div style={{marginRight:'10px'}}>
                 {
                    ( user && user.profile && user.profile.avatar) ?
-                   <Avatar src={user.profile.avatar}></Avatar>:
-                   <Avatar>{user && user.fullname[0].toUpperCase()}</Avatar>
+                   <Avatar 
+                        src={user.profile.avatar}
+                        onClick={()=>window.open("/profile?_id="+user._id)} 
+                    ></Avatar>:
+                   <Avatar 
+                    onClick={()=>window.open("/profile?_id="+user._id)} 
+                   >{user && user.fullname[0].toUpperCase()}</Avatar>
                 }
                 
             </div>

@@ -108,7 +108,7 @@ function TeacherLogin(props) {
                         </div>
                         
                     </Grid>
-                    <Grid item md={5} >
+                    <Grid item md={5} xs={11} >
                         <div className='login-form-container' >
                             <Box pt='70px' >  
                                 <Center>

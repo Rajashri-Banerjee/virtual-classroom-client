@@ -9,7 +9,7 @@ function ParticipantsList({users,open}) {
                     return <User user = {user} open={open} key={index} />
                 }):
                 <div style={{display:'flex',justifyContent:'center'}}  >
-                    {!open && <PeopleAltIcon sx={{color:'white'}} />}
+                    {!open && <PeopleAltIcon sx={{color:'white'}}  />}
                     {open && <p>No Participants To Show</p>}
                 </div>
             }

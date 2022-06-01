@@ -24,7 +24,7 @@ function Header({user,setCreateModal,createModal,dispatch,location}) {
                         <img className='logo' src="https://i.ibb.co/jwBHMRv/logo-free-file.png" alt="logo" onClick={()=>navigate('/')} />
                     </div>
                 <Flex direction='row' placeItems='center' alignItems='center'  >
-                    <ul className='flex' >
+                    <ul className='flex student-header' >
                         <li 
                             className={`${location.pathname==='/' ? 'list active-list': 'list'}`}
                         >
@@ -42,13 +42,13 @@ function Header({user,setCreateModal,createModal,dispatch,location}) {
                     </Box> */}
                     {(user.profile && user.profile.avatar )?
                         <Avatar 
-                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer',marginRight:2 }}
+                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer',marginRight:0 }}
                             src={user.profile.avatar}
                             onClick={()=>navigate('/student/profile')}
                         >
                         </Avatar> :
                         <Avatar 
-                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer',marginRight:2 }}
+                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer',marginRight:0 }}
                             onClick={()=>navigate('/student/profile')}
                         >
                             {user.username[0].toUpperCase()}

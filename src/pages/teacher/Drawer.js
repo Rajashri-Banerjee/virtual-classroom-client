@@ -53,7 +53,7 @@ const closedMixin = (theme) => ({
         width: `calc(${theme.spacing(8)} + 1px)`,
     },
     position:'relative',
-});
+})
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -101,9 +101,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
        '& .MuiDrawer-paper': closedMixin(theme),
     }),
     position:'relative',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
   }),
-);
+);  
 
 export default function MiniDrawer({children,participantsList,users,setUsers,toast,room,notifications,setNotifications,assignments,setAssignments,notes,setNotes,setNotificationModal,setAssignmentsModal,setNotesModal,updateHandler,user}) {
     console.log(room)
@@ -114,12 +114,10 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
 
     const handleDrawerOpen = () => {
         setOpen(!open);
-    };
-
+    }
     const handleDrawerClose = () => {
         setOpen(!open);
-    };
-
+    }
   return (
     <Box sx={{ display: 'flex',position:'relative',justifyContent:'space-between'}} >
         <CssBaseline />
@@ -135,7 +133,11 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
         >
             <DrawerHeader>
                 <IconButton onClick={()=>setOpen(!open)}>
-                    {open ? <KeyboardArrowLeftIcon sx={{color:'white'}}/> : <KeyboardArrowRightIcon sx={{color:'white'}}/>}
+                    {
+                        open ? 
+                        <KeyboardArrowLeftIcon  sx={{color:'white'}}/> :
+                        <KeyboardArrowRightIcon sx={{color:'white'}} className='none'/>
+                    }
                 </IconButton>
             </DrawerHeader>
             <Divider color='gray'/>
@@ -212,9 +214,11 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
       >
             <DrawerHeader sx={{justifyContent:'space-around'}} >
                 <IconButton onClick={()=>setOpen2(!open2)}>
-                    {open2 ? 
-                        <KeyboardArrowLeftIcon sx={{color:'white'}}/> : 
-                        <KeyboardArrowRightIcon sx={{color:'white'}} />}
+                    {
+                        open2 ? 
+                        <KeyboardArrowLeftIcon sx={{color:'white'}} className='none' /> : 
+                        <KeyboardArrowRightIcon sx={{color:'white'}}     />
+                    }
                 </IconButton>
                 {open2 && <p >Participants</p>}
                 {room && open2 && <CopyToClipboard 
@@ -228,10 +232,6 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
                                 }
                             >
                                 <AddIcon
-                                    // mt='10px' 
-                                    // size={'25px'} 
-                                    // style={{cursor:'pointer'}}
-                                    // className='li'
                                     sx={{color:'white'}}
                                     style={{cursor:'pointer'}}
                                 />
@@ -247,12 +247,18 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
             {participantsList && 
                 <div>{participantsList}</div>
             }
-            {/* {
-                users.map((user,index)=><ParticipantsList user={user} key={index+1} />)
-            } */}
             <CssBaseline />
              <Divider color="gray" />
-            {users && <ParticipantsList setUsers={setUsers} users={users} open={open2} room={room} admin/>}
+            {
+                users && 
+                <ParticipantsList 
+                    setUsers={setUsers} 
+                    users={users} 
+                    open={open2} 
+                    room={room} 
+                    admin
+                />
+            }
             
         </Drawer>
     </Box>

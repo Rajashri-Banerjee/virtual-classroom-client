@@ -5,6 +5,8 @@ import { NativeBaseProvider} from 'native-base';
 import store from './redux/store'
 import  {Provider} from 'react-redux'
 import axios from 'axios'
+import './css/main.css'
+import './css/responsive.css'
 axios.defaults.baseURL = 'https://rsb-virtual-classroom.herokuapp.com'
 
 ReactDOM.render(

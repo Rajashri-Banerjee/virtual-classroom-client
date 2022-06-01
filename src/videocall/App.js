@@ -9,6 +9,7 @@ import {
   useConnection,
   usePubSub,
 } from "@videosdk.live/react-sdk";
+import Fab from '@mui/material/Fab';
 import { getToken } from "./api";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
@@ -16,7 +17,8 @@ import { JoiningScreen } from "./components/JoiningScreen";
 import ReactPlayer from "react-player";
 import Control from "./components/Control";
 import ParticipantsView from './components/ParticipantsView';
-
+import CommentIcon from '@mui/icons-material/Comment';
+import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 const primary = "transparent";
 const width = 400;
 const height = (width * 2) / 3;
@@ -29,7 +31,7 @@ const chunk = (arr) => {
 };
 function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
   const [participantViewVisible, setParticipantViewVisible] = useState(true);
-
+  const [showChat,setShowChat] = useState(false)
   function onParticipantJoined(participant) {
     console.log(" onParticipantJoined", participant);
   }
@@ -258,17 +260,44 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
       </div>
       {/* SEcond div */}
       <div
-        style={{
-          background:'#1D242F',
-          width:'350px',
-          height:'calc(100vh - 80px)',
-          padding:0,
-          margin:0,
-          // backgroundColor:'blue',
-          overflow:'hidden'
-        }}  
-      >
+        className={`live-chat-div ${!showChat? 'hide':''}`}      >
         <MeetingChat tollbarHeight={tollbarHeight} />
+        <button
+          onClick={()=>setShowChat(!showChat)}
+          style={{
+            position:'fixed',
+            right:0,
+            top:10,
+            zIndex:100000584257741,
+            outline:'none',
+            border:'none',
+            background:'transparent'
+          }}
+        >
+          {  
+            showChat ? 
+            <Fab
+              sx={{
+                  backgroundColor:'transparent !important',
+                  borderRadius:'50% !important',
+                  position:'relative',
+                  overFlow:'hidden'
+              }}
+            >
+              <CommentsDisabledIcon sx={{color:'white', fontSize:'30px'}} size={50} />
+            </Fab>:
+            <Fab
+              sx={{
+                  backgroundColor:'transparent !important',
+                  borderRadius:'50% !important',
+                  position:'relative',
+                  overFlow:'hidden'
+              }}
+            >
+              <CommentIcon sx={{color:'white', fontSize:'30px'}} size={50} />
+            </Fab>
+          }
+        </button>
       </div>
       <div
         style={{
@@ -282,20 +311,11 @@ function MeetingView({ onNewMeetingIdToken, onMeetingLeave }) {
           justifyContent: 'center',
           borderTop: '1px solid #444444'
         }}
+        className=''
       >
-      <p style={{
-        position:'fixed',
-          color:'#CECECE',
-          textAlign:'center',
-          zIndex: 1000000000000,
-          display: 'flex',
-          alignItems: 'center',
-          bottom: '10px',
-          fontSize: '19px',
-          fontFamily: 'Courier New',
-          letterSpacing: '-1px',
-          left: '15px'
-        }}>Meeting ID : {meetingId} 
+      <p 
+        className='meeting_id'
+      >Meeting ID : {meetingId} 
       </p>
         <Control 
           leave={leave}
@@ -380,7 +400,6 @@ const App = ({admin,user,meeting_id,setMeetingIdUser}) => {
       user={user}
       meeting_id={meeting_id}
     />
-  );
-};
-
+  )
+}
 export default App;

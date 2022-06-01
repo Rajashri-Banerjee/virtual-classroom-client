@@ -89,11 +89,18 @@ function Login(props) {
     return (
         <div className='login-page flex sb center' >
             <div className='login-container'>
-                <Grid container spacing={2} style={{position:'absolute',top:0,left:0,right:0,bottom:0}} >
-                    <Grid item md={7} height='100%' >
+                <Grid container spacing={2} 
+                    style={{position:'absolute',top:0,left:0,right:0,bottom:0}} 
+                    classes='asomenaeasdfl'
+                >
+                    <Grid item md={7} height='100%' xs={0} style={{
+                        // background:'green'
+                    }} >
                         <div className='login-left-container' >
                             <div className='flex center' >
-                                <img className="login-logo" src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
+                                <img 
+                                    className="login-logo" 
+                                    src="https://i.ibb.co/jwBHMRv/logo-free-file.png"/>
                             </div>
                             <div>
                                 <h2 className='h22' >"Your One Stop Destination To Learn Together"</h2>
@@ -104,13 +111,18 @@ function Login(props) {
                         </div>
                         
                     </Grid>
-                    <Grid item md={5} >
+                    <Grid item md={5} xs={11}>
                         <div className='login-form-container' >
                             <Box pt='80px' >  
                                 <Center>
                                     <Avatar 
                                         src='https://cpng.pikpng.com/pngl/s/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png' 
-                                        sx={{ width: 80, height: 80,background:'transparent',marginBottom: 2 }} 
+                                        sx={{ 
+                                            width: 80, 
+                                            height: 80,
+                                            background:'transparent',
+                                            marginBottom: 2 
+                                        }} 
                                     >
                                         R
                                     </Avatar>

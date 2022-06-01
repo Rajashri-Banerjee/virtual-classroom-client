@@ -1,0 +1,119 @@
+@media only screen and (max-width: 600px) {
+    .feature-box {
+        height: auto;
+    }
+    .login-container{
+        /* background-color: red; */
+        justify-content: center;
+    }
+    .signup-container{
+        justify-content: center;
+    }
+    .login-left-container{
+        display: none;
+    }
+    .login-form-container{
+        width:100%;
+        background-color: transparent;
+    }
+    .student-header{
+        font-size: 13px;
+    }
+    .student-header li{
+        margin-right: 8px;
+    }
+    .notification-card{
+        padding: 10px 10px !important;
+    }
+    .add-new-btn{
+        font-size: 12px;
+        padding: 5px 5px;
+    }
+    .none{
+        display: none;
+    }
+    .empty-box{
+        padding: 2px 6px;
+    }
+    .empty-box p{
+        font-size: 12px; 
+        text-align: justify;
+    }
+    .css-1gu62g1{
+        display: none !important;
+    }
+    .date-span{
+        bottom: 5px;
+    }
+    .p20{
+        padding: 15px 10px !important;
+    }
+    .del-icon{
+        position: absolute;
+        right: 5px;
+        top: -2px;
+    }
+    .date-span3{
+        position: absolute;
+        font-size: 10px;
+        bottom: 15px;
+        left: 10px;
+    }
+    .date-span4{
+        left: 10px;
+        bottom: 2px;
+        font-size: 10px;
+    }
+    .ass-title{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .date{
+        margin-top: 10px;
+        position: absolute;
+        bottom: 1px;
+        width: 100%;
+    }
+    .assignment-card{
+        padding-bottom: 30px !important;
+    }
+    /* Viddeo chat */
+    .meeting_id{
+       /* top:100px;  */
+       bottom: calc(100vh - 50px);
+       /* left:0;
+       right:0; */
+       width: 300px;
+       text-align: center;
+       margin: auto;
+       z-index: -1;
+       display: none;
+    }
+    .note{
+        padding-bottom: 20px !important;
+    }
+    .live-chat-div{
+        width:100%;
+    }
+    .scr{
+        margin-left: 30px !important;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .student-header li{
+        margin-right: 12px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

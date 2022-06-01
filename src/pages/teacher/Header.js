@@ -38,7 +38,7 @@ function Header({user,setCreateModal,createModal,dispatch, location}) {
                 
                 </Box>
                 <Flex direction='row' placeItems='center' alignItems='center'  >
-                    <ul className='flex' >
+                    <ul className='flex student-header' >
                         <li className={`${location.pathname==='/' ? 'list active-list': 'list'}`}><Link to='/'>Home</Link></li>
                         <li className={`${location.pathname==='/teacher/dashboard' ? 'list active-list': 'list'}`}><Link to='/teacher/dashboard'>Dashboard</Link></li>
                         <li className='list' onClick={navigateHandler}>Logout</li>
@@ -48,13 +48,13 @@ function Header({user,setCreateModal,createModal,dispatch, location}) {
                     </Box> */}
                     {(user.profile && user.profile.avatar )?
                         <Avatar 
-                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer' }}
+                            sx={{ width: 50, height: 50,margin:'auto',cursor:'pointer' }}
                             src={user.profile.avatar}
                             onClick={()=>navigate('/teacher/profile')}
                         >
                         </Avatar> :
                         <Avatar 
-                            sx={{ width: 50, height: 50,maring:'auto',cursor:'pointer' }}
+                            sx={{ width: 50, height: 50,margin:'auto',cursor:'pointer' }}
                             onClick={()=>navigate('/teacher/profile')}
                         >
                             {user.username[0].toUpperCase()}

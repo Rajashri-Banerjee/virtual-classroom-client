@@ -1,10 +1,13 @@
 import React,{ useState } from 'react'
 import {Link} from'react-router-dom'
-import {Box,Button,Heading,Divider, Modal} from 'native-base'
+import {Box,Heading,Divider, Modal, Button} from 'native-base'
 import { useNavigate,useLocation } from'react-router-dom'
-import { Grid } from '@mui/material'
+import { Grid, IconButton} from '@mui/material'
 import Header from '../components/Header'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
+
+// https://rajashri-banerjee-virtual-classroom.vercel.app/
+// https://rsb-virtual-classroom.herokuapp.com/
 
 function Homepage() {
     const navigate = useNavigate()
@@ -148,8 +151,8 @@ function Homepage() {
             </div>
             <div className="footer">
                 <div className="social-icon-container flex wrap center">
-                    <BsFacebook className="footer-icon" onClick={facebookOpener} style={{cursor: 'pointer'}}/>
-                    <BsLinkedin className="footer-icon" onClick={linkedinOpener} style={{cursor: 'pointer'}}/>
+                    <IconButton><BsFacebook className="footer-icon" onClick={facebookOpener} style={{cursor: 'pointer'}}/></IconButton>
+                    <IconButton><BsLinkedin className="footer-icon" onClick={linkedinOpener} style={{cursor: 'pointer'}}/></IconButton>
                 </div>
         
             </div>

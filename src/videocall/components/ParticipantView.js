@@ -96,6 +96,7 @@ const ParticipantView = ({ participantId }) => {
         // background:"green"
         // margin:"10px"
       }}
+      className='videos-div'
     >        
       <div>
         <audio ref={micRef} autoPlay muted={isLocal} style={{display:'none'}} class='fun' />
@@ -105,11 +106,10 @@ const ParticipantView = ({ participantId }) => {
             borderRadius: borderRadius,
             overflow: "hidden",
             backgroundColor: "black",
-            height: 300,
-            width:400,
             display:'flex',
             margin:'10px 30px'
           }}
+          className='live-video'
         >
           <div
             style={{ 
@@ -193,10 +193,8 @@ const ParticipantView = ({ participantId }) => {
           borderRadius: borderRadius,
           overflow: "hidden",
           backgroundColor: "black",
-          width: 400,
-          height: 300,
-          maxWidth:400
         }}
+        className='live-video scr'
       >
         <div
           style={{ 

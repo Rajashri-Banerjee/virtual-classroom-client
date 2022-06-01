@@ -74,7 +74,8 @@ export function MeetingDetailsScreen({
             fullwidth
             style={{
               marginTop: "0.5rem",
-              width: "50%",
+              width: "100%",
+              maxWidth: '400px'
             }}
             sx={{ input: { color: '#CECECE',outlineColor:'white', paddingLeft: '5px' } }}
             required
