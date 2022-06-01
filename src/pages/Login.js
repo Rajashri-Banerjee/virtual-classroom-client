@@ -178,7 +178,7 @@ function Login(props) {
                                         Login
                                     </Button>
                                     <Center mt = '2'>
-                                    <Link className='underlined-link' to ='/signup'>
+                                    <Link className='underlined-link' to ={search.next?`/signup?next=${search.next}`:'/signup'}>
                                         Create a new account
                                     </Link>
                                     </Center>

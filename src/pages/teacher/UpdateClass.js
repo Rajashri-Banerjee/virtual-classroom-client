@@ -343,7 +343,7 @@ function UpdateClass(props) {
                                         Choose a file
                                     </Button>
                                     <Button 
-                                        onClick={posterUpdater}
+                                        onPress={posterUpdater}
                                         bg={'black'}
                                         _hover={{
                                             backgroundColor:'#1E1A1A'

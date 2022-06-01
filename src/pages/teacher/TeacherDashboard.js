@@ -116,8 +116,8 @@ function TeacherDashboard(props) {
                     </Center>
                 </div>
             }
-            <Modal isOpen={createModal} onClose={()=>setCreateModal(false)} >
-                <Modal.Content marginTop={200} marginBottom={'auto'}   >
+            <Modal isOpen={createModal} onClose={()=>setCreateModal(false)} minHeight='1000vh'>
+                <Modal.Content marginTop={200} marginBottom={'auto'} >
                 <Modal.CloseButton />
                     <Modal.Header>
                         Class Details
