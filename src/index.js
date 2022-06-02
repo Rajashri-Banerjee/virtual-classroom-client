@@ -7,8 +7,8 @@ import  {Provider} from 'react-redux'
 import axios from 'axios'
 import './css/main.css'
 import './css/responsive.css'
-// axios.defaults.baseURL = 'https://rsb-virtual-classroom.herokuapp.com'
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'https://rsb-virtual-classroom.herokuapp.com'
+// axios.defaults.baseURL = 'http://localhost:3001'
 
 ReactDOM.render(
   <React.StrictMode>
