@@ -222,7 +222,7 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
                 </IconButton>
                 {open2 && <p >Participants</p>}
                 {room && open2 && <CopyToClipboard 
-                                text={'http://localhost:3000/student/class/join/'+room._id}
+                                text={'/student/class/join/'+room._id}
                                 onCopy={() => 
                                     toast.show({
                                         title:'Success',
