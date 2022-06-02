@@ -222,7 +222,7 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
                 </IconButton>
                 {open2 && <p >Participants</p>}
                 {room && open2 && <CopyToClipboard 
-                                text={'/student/class/join/'+room._id}
+                                text={'https://rajashri-banerjee-virtual-classroom.vercel.app/student/class/join/'+room._id}
                                 onCopy={() => 
                                     toast.show({
                                         title:'Success',
