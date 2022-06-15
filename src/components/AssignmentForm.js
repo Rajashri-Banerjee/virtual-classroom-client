@@ -12,7 +12,7 @@ function AssignmentForm(props) {
     const inputFile = useRef(null) 
     const [created_at, setcreated_at] = useState(new Date())
     
-     const assignmentHandler = ()=> {
+    const assignmentHandler = ()=> {
          if(!link){
             alert('Please upload a document first')
             return
@@ -22,8 +22,8 @@ function AssignmentForm(props) {
             return
         }
         props.setAssignments((prevState) => {
-            props.updateHandler({assignment:prevState.concat({title,link,deadline,created_at:new Date()})})
-            return prevState.concat({title,link,deadline,created_at: new Date()})
+            props.updateHandler({assignment:prevState.concat({title,link,deadline:new Date(deadline),created_at:new Date()})})
+            return prevState.concat({title,link,deadline:new Date(deadline),created_at: new Date()})
         })
         props.setAssignmentsModal(false)
     }

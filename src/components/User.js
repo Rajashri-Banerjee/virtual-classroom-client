@@ -32,7 +32,7 @@ function User({user,open,room,admin,setUsers}) {
     return (
         <div 
             className='participants-card'
-            style={{background:open?'black':'inherit'}}
+            style={{background:open?'black':'inherit', padding:open?'2px 8px':'0px 0px',margin:open?'7px 8px':'10px 10px 20px 15px'}}
         >
             <div style={{marginRight:'10px'}}>
                 {
@@ -52,7 +52,7 @@ function User({user,open,room,admin,setUsers}) {
                     onClick={()=>window.open("/profile?_id="+user._id)} 
                     style={{cursor:'pointer'}}
                 >
-                    {user && user.fullname}
+                    {user && open && user.fullname}
                 </p>
             </div> 
             {admin && 

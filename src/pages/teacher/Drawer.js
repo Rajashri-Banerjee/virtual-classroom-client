@@ -217,7 +217,7 @@ export default function MiniDrawer({children,participantsList,users,setUsers,toa
                     {
                         open2 ? 
                         <KeyboardArrowLeftIcon sx={{color:'white'}} className='none' /> : 
-                        <KeyboardArrowRightIcon sx={{color:'white'}}     />
+                        <KeyboardArrowRightIcon sx={{color:'white'}} />
                     }
                 </IconButton>
                 {open2 && <p >Participants</p>}

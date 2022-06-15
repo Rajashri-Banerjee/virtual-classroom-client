@@ -39,7 +39,7 @@ function AssignmentItem({assignment, user}) {
             // alert(response.data.error)
             toast.show({
                 title:'Error',
-                description:response.data.error,
+                description:`The deadline of this assignment was at ` + new Date(assignment.deadline).toString().substring(0,24),
                 status:'error'
             })
             setOpen(false)
