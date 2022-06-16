@@ -31,7 +31,6 @@ function ClassCard(props) {
             position='relative'
             zIndex={1}
             overflow={'hidden'}
-            borderRadius={5}
             cursor= 'pointer'
             className='classcard'
             
@@ -73,7 +72,7 @@ function ClassCard(props) {
                     className='chtoku'
                 >
                     <CopyToClipboard 
-                        text={'http://localhost:3000/student/class/join/'+props.room._id}
+                        text={'https://rajashri-banerjee-virtual-classroom.vercel.app/student/class/join/'+props.room._id}
                         onCopy={() => setOpen(false)}
                     >
                     <li className='li'>Copy Class Link</li>
